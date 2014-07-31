@@ -1,4 +1,9 @@
 win-gists
 =========
 
-A gist client for windows
+A simple gist client for windows. 
+
+#Planned
+
+Upload files as gists via windows context menu. 
+Download gists as file svia windows context menu.
