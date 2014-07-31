@@ -20,7 +20,7 @@ namespace GistClient
         }
 
         public static string GetFileDescription(String filepath){
-            return "File " + GetFileName(filepath) + ", uploaded by WinGists";
+            return "File " + GetFileName(filepath) + ", uploaded by WinGists.";
         }
     }
 }
