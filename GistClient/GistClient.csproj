@@ -45,8 +45,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FileReader.cs" />
+    <Compile Include="GistClient.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RequestFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

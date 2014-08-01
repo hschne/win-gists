@@ -10,14 +10,14 @@ namespace GistClient.Test
         [TestMethod]
         public void ReadFile(){
             const string filepath = @"..\..\testfiles\TestFile.txt";
-            String content = FileReader.Read(filepath);
+            String content = FileReader.GetContent(filepath);
             Assert.IsTrue(content.Equals("TestFileContent"));
         }
 
         [TestMethod]
         public void ReadEmptyFile(){
             const string filepath = @"..\..\testfiles\EmptyFile.txt";
-            String content = FileReader.Read(filepath);
+            String content = FileReader.GetContent(filepath);
             Assert.IsTrue(content.Equals(""));
         }
 

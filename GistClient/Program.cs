@@ -9,20 +9,10 @@ using RestSharp.Deserializers;
 
 namespace GistClient {
     class Program {
-        static void Main(string[] args) {
-            var client = new RestClient("https://api.github.com");
-            var request = new RestRequest("/gists", Method.POST);
-            request.RequestFormat = DataFormat.Json;
-            var file = new JsonObject();
-            file.Add("myFile.txt", new { content = "this is some file content"});
-            var jsonObject = new JsonObject();
-            jsonObject.Add("description", "x2762-1s");
-            jsonObject.Add("files", file);
-            jsonObject.Add("public",true);
-            request.AddBody(jsonObject);
-            var response = client.Execute(request);
-            var deserializer = new JsonDeserializer();
-            var jsonResponse = deserializer.Deserialize<Dictionary<String,String>>(response);
+        static void Main(string[] args){
+            const string filepath = @"E:\Source\win-gists\GistClient.Test\testfiles\TestFile.txt";
+            var request = RequestFactory.CreateRequest(filepath);
+            var response = GistClient.SendRequest(request);
             Console.ReadLine();
 
         }
