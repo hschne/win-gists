@@ -1,0 +1,5 @@
+Windows Registry Editor Version 5.00
+[HKEY_CLASSES_ROOT\*\shell\WinGists]
+@="Upload as Gist"
+[HKEY_CLASSES_ROOT\*\shell\WinGists\Command]
+@="E:\\Source\\win-gists\\GistClient\\bin\\Debug\\GistClient.exe \"%1\""
