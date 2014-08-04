@@ -8,13 +8,15 @@ using RestSharp;
 using RestSharp.Deserializers;
 
 namespace GistClient {
-    class Program {
-        static void Main(string[] args){
-            const string filepath = @"E:\Source\win-gists\GistClient.Test\testfiles\TestFile.txt";
+    public class Program {
+        public static void Main(string[] args){
+            String filepath = args[0];
             var request = RequestFactory.CreateRequest(filepath);
             var response = GistClient.SendRequest(request);
+            String url = response["html_url"];
+            Console.WriteLine("File " +filepath+ " uploaded successfully.");
+            Console.WriteLine("Url: " +url);
             Console.ReadLine();
-
         }
     }
 }
