@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Dynamic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using RestSharp;
 using RestSharp.Deserializers;
 
-namespace GistClient
+namespace GistClient.Client
 {
     public static class GistClient
     {

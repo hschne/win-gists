@@ -1,7 +1,8 @@
 ﻿using System;
+using GistClient.FileSystem;
 using RestSharp;
 
-namespace GistClient
+namespace GistClient.Client
 {
     public static class RequestFactory
     {
