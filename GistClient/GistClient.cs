@@ -15,7 +15,6 @@ namespace GistClient
 
         static GistClient(){
             Client =  new RestClient("https://api.github.com");
-            //Client.Authenticator = new HttpBasicAuthenticator("username","password");
         }
 
         public static Dictionary<String,String> SendRequest(RestRequest request){
@@ -23,6 +22,10 @@ namespace GistClient
             var deserializer = new JsonDeserializer();
             var jsonResponse = deserializer.Deserialize<Dictionary<String, String>>(response);
             return jsonResponse;
+        }
+
+        public static void SetAuthentication(String username, String password){
+            Client.Authenticator = new HttpBasicAuthenticator(username,password);
         }
     }
 }
