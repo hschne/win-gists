@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using GistClient.FileSystem;
 using RestSharp;
 using RestSharp.Deserializers;
 
@@ -21,7 +22,7 @@ namespace GistClient.Client
         }
 
         public static void SetAuthentication(String username, String password){
-            Client.Authenticator = new HttpBasicAuthenticator(username,password);
+            Client.Authenticator = new HttpBasicAuthenticator(username,password.Decrypt());
         }
     }
 }

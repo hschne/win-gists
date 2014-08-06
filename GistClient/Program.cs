@@ -8,7 +8,7 @@ namespace GistClient {
     public class Program {
         public static void Main(string[] args){
             String filepath = @"E:\Source\win-gists\GistClient\bin\Debug\RestSharp.xml"; //args[0]; 
-           
+            //SettingsManager.ClearSettings();
             if (!SettingsManager.CredentialsExist()){
                 Console.WriteLine("Please enter your username:");
                 String username = Console.ReadLine();

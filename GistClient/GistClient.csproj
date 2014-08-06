@@ -50,13 +50,13 @@
     <Compile Include="FileSystem\SettingsManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Client\RequestFactory.cs" />
+    <Compile Include="FileSystem\StringProtector.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Client\RequestFactory.cs" />
-    <Compile Include="FileSystem\StringProtector.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

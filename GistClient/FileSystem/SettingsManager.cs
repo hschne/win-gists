@@ -16,10 +16,12 @@ namespace GistClient.FileSystem
 
         public static void SetUsername(String username){
             Settings.Default.Username = username;
+            Settings.Default.Save();
         }
 
         public static void SetPassword(String password){
             Settings.Default.Password = password.Encrypt();
+            Settings.Default.Save();
         }
 
         public static bool CredentialsExist(){
@@ -32,6 +34,7 @@ namespace GistClient.FileSystem
             foreach (SettingsProperty item in Settings.Default.Properties){
                 Settings.Default[item.Name] = String.Empty;
             }
+            Settings.Default.Save();
         }
     }
 }
