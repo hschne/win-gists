@@ -4,8 +4,9 @@ win-gists
 A simple gist client for windows. 
 
 #Planned
-
-Upload files as gists via windows context menu. 
-Authentication 
+ 
+Add Exception handling when Authentication fails
+Or when no connection is present
 Open File in browser after upload
-Settings for the above.
+Add Bubble popups for when the upload has finished. 
+Add Gui for settings (?)
