@@ -1,30 +1,54 @@
 ﻿using System;
-using System.Security.Cryptography;
+using System.Collections.Generic;
 using GistClient.Client;
 using GistClient.FileSystem;
+using RestSharp;
 
-
-namespace GistClient {
-    public class Program {
+namespace GistClient
+{
+    public class Program
+    {
         public static void Main(string[] args){
             String filepath = @"E:\Source\win-gists\GistClient\bin\Debug\RestSharp.xml"; //args[0]; 
-            //SettingsManager.ClearSettings();
+            SettingsManager.ClearSettings();
             if (!SettingsManager.CredentialsExist()){
                 Console.WriteLine("Please enter your username:");
                 String username = Console.ReadLine();
-                Console.WriteLine("Please enter your password: ");
-                String password = Console.ReadLine().Encrypt();
+                ReadPassword();
                 SettingsManager.SetUsername(username);
-                SettingsManager.SetPassword(password);
             }
-            Client.GistClient.SetAuthentication(SettingsManager.GetUserName(),SettingsManager.GetPassword().Decrypt());
+            Client.GistClient.SetAuthentication(SettingsManager.GetUserName(), SettingsManager.GetPassword().Decrypt());
             Console.WriteLine("Uploading file...");
-            var request = RequestFactory.CreateRequest(filepath);
-            var response = Client.GistClient.SendRequest(request);
+            RestRequest request = RequestFactory.CreateRequest(filepath);
+            Dictionary<string, string> response = Client.GistClient.SendRequest(request);
             String url = response["html_url"];
-            Console.WriteLine("File " +filepath+ " uploaded successfully.");
-            Console.WriteLine("Url: " +url);
+            Console.WriteLine("File " + filepath + " uploaded successfully.");
+            Console.WriteLine("Url: " + url);
             Console.ReadLine();
+        }
+
+        private static void ReadPassword(){
+            String password = "";
+            Console.WriteLine("Please enter your password: ");
+            ConsoleKeyInfo key;
+            do{
+                key = Console.ReadKey(true);
+                if (key.Key != ConsoleKey.Backspace && key.Key != ConsoleKey.Enter)
+                {
+                    password += key.KeyChar;
+                    Console.Write("*");
+                }
+                else
+                {
+                    if (key.Key == ConsoleKey.Backspace && password.Length > 0)
+                    {
+                        password = password.Substring(0, (password.Length - 1));
+                        Console.Write("\b \b");
+                    }
+                }
+            } // Stops Receving Keys Once Enter is Pressed
+            while (key.Key != ConsoleKey.Enter);
+            SettingsManager.SetPassword(password.Encrypt());
         }
     }
 }
