@@ -9,14 +9,8 @@ namespace GistClient
     public class Program
     {
         public static void Main(string[] args){
-            String filepath = @"E:\Source\win-gists\GistClient\bin\Debug\RestSharp.xml"; //args[0]; 
-            SettingsManager.ClearSettings();
-            if (!SettingsManager.CredentialsExist()){
-                Console.WriteLine("Please enter your username:");
-                String username = Console.ReadLine();
-                ReadPassword();
-                SettingsManager.SetUsername(username);
-            }
+            String filepath = args[0]; 
+            SetCredentialsifNotExist();
             Client.GistClient.SetAuthentication(SettingsManager.GetUserName(), SettingsManager.GetPassword().Decrypt());
             Console.WriteLine("Uploading file...");
             RestRequest request = RequestFactory.CreateRequest(filepath);
@@ -25,6 +19,16 @@ namespace GistClient
             Console.WriteLine("File " + filepath + " uploaded successfully.");
             Console.WriteLine("Url: " + url);
             Console.ReadLine();
+        }
+
+        private static void SetCredentialsifNotExist(){
+            if (!SettingsManager.CredentialsExist())
+            {
+                Console.WriteLine("Please enter your username:");
+                String username = Console.ReadLine();
+                ReadPassword();
+                SettingsManager.SetUsername(username);
+            }
         }
 
         private static void ReadPassword(){
@@ -46,7 +50,7 @@ namespace GistClient
                         Console.Write("\b \b");
                     }
                 }
-            } // Stops Receving Keys Once Enter is Pressed
+            } 
             while (key.Key != ConsoleKey.Enter);
             SettingsManager.SetPassword(password.Encrypt());
         }
