@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using GistClient.Client;
 using GistClient.FileSystem;
 using RestSharp;
@@ -8,22 +9,38 @@ namespace GistClient
 {
     public class Program
     {
+        private static String filepath;
+
         public static void Main(string[] args){
-            String filepath = args[0]; 
-            SetCredentialsifNotExist();
-            Client.GistClient.SetAuthentication(SettingsManager.GetUserName(), SettingsManager.GetPassword().Decrypt());
-            Console.WriteLine("Uploading file...");
-            RestRequest request = RequestFactory.CreateRequest(filepath);
-            Dictionary<string, string> response = Client.GistClient.SendRequest(request);
-            String url = response["html_url"];
-            Console.WriteLine("File " + filepath + " uploaded successfully.");
-            Console.WriteLine("Url: " + url);
+            SettingsManager.ClearSettings();
+            if (IsValidInput(args)){
+                filepath = args[0];
+                SetCredentialsifNotExist();
+                Client.GistClient.SetAuthentication(SettingsManager.GetUserName(),
+                    SettingsManager.GetPassword());
+                Console.WriteLine();
+                Console.WriteLine("Uploading file...");
+                CreateAndSendRequest();
+            }
             Console.ReadLine();
         }
 
+        private static void CreateAndSendRequest(){
+            RestRequest request = RequestFactory.CreateRequest(filepath);
+            try{
+                Dictionary<string, string> response = Client.GistClient.SendRequest(request);
+                String url = response["html_url"];
+                Console.WriteLine("File " + FileReader.GetFileName(filepath) + " uploaded successfully.");
+                Console.WriteLine("Url: " + url);
+            }
+            catch (Exception e){
+                Console.WriteLine("An error occured: " + e.Message);
+                Console.WriteLine("Exiting...");
+            }
+        }
+
         private static void SetCredentialsifNotExist(){
-            if (!SettingsManager.CredentialsExist())
-            {
+            if (!SettingsManager.CredentialsExist()){
                 Console.WriteLine("Please enter your username:");
                 String username = Console.ReadLine();
                 ReadPassword();
@@ -37,22 +54,28 @@ namespace GistClient
             ConsoleKeyInfo key;
             do{
                 key = Console.ReadKey(true);
-                if (key.Key != ConsoleKey.Backspace && key.Key != ConsoleKey.Enter)
-                {
+                if (key.Key != ConsoleKey.Backspace && key.Key != ConsoleKey.Enter){
                     password += key.KeyChar;
                     Console.Write("*");
                 }
-                else
-                {
-                    if (key.Key == ConsoleKey.Backspace && password.Length > 0)
-                    {
+                else{
+                    if (key.Key == ConsoleKey.Backspace && password.Length > 0){
                         password = password.Substring(0, (password.Length - 1));
                         Console.Write("\b \b");
                     }
                 }
-            } 
-            while (key.Key != ConsoleKey.Enter);
+            } while (key.Key != ConsoleKey.Enter);
             SettingsManager.SetPassword(password.Encrypt());
+        }
+
+        private static Boolean IsValidInput(String[] args){
+            if (args.Length != 1){
+                Console.WriteLine("Invalid number of arguments. Expected filepath.");
+                return false;
+            }
+            if (File.Exists(args[0])) return true;
+            Console.WriteLine("Invalid filepath.");
+            return false;
         }
     }
 }

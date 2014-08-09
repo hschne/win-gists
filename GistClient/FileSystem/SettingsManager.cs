@@ -20,7 +20,7 @@ namespace GistClient.FileSystem
         }
 
         public static void SetPassword(String password){
-            Settings.Default.Password = password.Encrypt();
+            Settings.Default.Password = password;
             Settings.Default.Save();
         }
 

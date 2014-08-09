@@ -10,7 +10,7 @@ namespace GistClient.Test
         [TestMethod]
         public void SavePassword(){
             const string password = "testpassword";
-            SettingsManager.SetPassword(password);
+            SettingsManager.SetPassword(password.Encrypt());
         }
 
         [TestMethod]
