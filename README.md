@@ -5,13 +5,13 @@ A simple gist client for windows.
 
 #Planned
 
-Add exception if file used by another program. 
+Copy link to clipboard after upload.
+
+Open File in browser after upload.
 
 Add exception when no connection is present.
 
-Enable sending files anonymous. 
-
-Open File in browser after upload
+Enable sending files anonymously. 
 
 Add Bubble popups for when the upload has finished. 
 
