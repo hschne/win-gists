@@ -5,7 +5,6 @@ namespace GistClient.FileSystem
 {
     public static class FileReader
     {
-
         public static String GetContent(String filepath){
             using (var fileStream = new FileStream(filepath, FileMode.Open)){
                 using (var reader = new StreamReader(fileStream)){
@@ -23,6 +22,5 @@ namespace GistClient.FileSystem
         public static string GetFileDescription(String filepath){
             return "File " + GetFileName(filepath) + ", uploaded by WinGists.";
         }
-
     }
 }

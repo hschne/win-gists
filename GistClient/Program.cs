@@ -26,15 +26,21 @@ namespace GistClient
         }
 
         private static void CreateAndSendRequest(){
-            RestRequest request = RequestFactory.CreateRequest(filepath);
+
             try{
+                RestRequest request = RequestFactory.CreateRequest(filepath);
                 Dictionary<string, string> response = Client.GistClient.SendRequest(request);
                 String url = response["html_url"];
                 Console.WriteLine("File " + FileReader.GetFileName(filepath) + " uploaded successfully.");
                 Console.WriteLine("Url: " + url);
             }
+            catch (IOException e){
+                Console.WriteLine("Error: File is already used by another program.");
+            }
             catch (Exception e){
                 Console.WriteLine("An error occured: " + e.Message);
+            }
+            finally{
                 Console.WriteLine("Exiting...");
             }
         }
