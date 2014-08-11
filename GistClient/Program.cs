@@ -12,7 +12,6 @@ namespace GistClient
         private static String filepath;
 
         public static void Main(string[] args){
-            SettingsManager.ClearSettings();
             if (IsValidInput(args)){
                 filepath = args[0];
                 SetCredentialsifNotExist();

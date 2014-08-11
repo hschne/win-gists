@@ -20,8 +20,7 @@ namespace GistClient.Client
         public static Dictionary<String,String> SendRequest(RestRequest request){
             var response = Client.Execute(request);
             HandleResponse(response);
-            var deserializer = new JsonDeserializer();
-            var jsonResponse = deserializer.Deserialize<Dictionary<String, String>>(response);
+            var jsonResponse = TrySerializeResponse(response);
             return jsonResponse;
         }
 
@@ -30,11 +29,19 @@ namespace GistClient.Client
         }
 
         public static void HandleResponse(IRestResponse response){
-            var firstOrDefault = response.Headers.FirstOrDefault(x => x.Name == "Status");
-            var statusValue = firstOrDefault.Value.ToString();
+            var statusHeader = response.Headers.FirstOrDefault(x => x.Name == "Status");
+            var statusValue = statusHeader.Value.ToString();
             if (!statusValue.Contains("201")){
-                throw new Exception(statusValue);
+                String message = TrySerializeResponse(response)["message"];
+                throw new Exception(statusValue + ", "+message);
             }
         }
+
+        private static Dictionary<string, string> TrySerializeResponse(IRestResponse response)
+        {
+            var deserializer = new JsonDeserializer();
+            var jsonResponse = deserializer.Deserialize<Dictionary<String, String>>(response);
+            return jsonResponse;
+        } 
     }
 }
