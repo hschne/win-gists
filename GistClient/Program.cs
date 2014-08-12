@@ -4,6 +4,7 @@ using System.IO;
 using GistClient.Client;
 using GistClient.FileSystem;
 using RestSharp;
+using System.Windows.Forms;
 
 namespace GistClient
 {
@@ -11,10 +12,11 @@ namespace GistClient
     {
         private static String filepath;
 
+        [STAThread]
         public static void Main(string[] args){
             if (IsValidInput(args)){
                 filepath = args[0];
-                SetCredentialsifNotExist();
+                SetCredentialsIfNotExist();
                 Client.GistClient.SetAuthentication(SettingsManager.GetUserName(),
                     SettingsManager.GetPassword());
                 Console.WriteLine();
@@ -32,6 +34,8 @@ namespace GistClient
                 String url = response["html_url"];
                 Console.WriteLine("File " + FileReader.GetFileName(filepath) + " uploaded successfully.");
                 Console.WriteLine("Url: " + url);
+                Console.WriteLine("Url has been copied to clipboard...");
+                Clipboard.SetText(url);
             }
             catch (IOException e){
                 Console.WriteLine("Error: File is already used by another program.");
@@ -44,7 +48,7 @@ namespace GistClient
             }
         }
 
-        private static void SetCredentialsifNotExist(){
+        private static void SetCredentialsIfNotExist(){
             if (!SettingsManager.CredentialsExist()){
                 Console.WriteLine("Please enter your username:");
                 String username = Console.ReadLine();
