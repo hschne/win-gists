@@ -30,10 +30,15 @@ namespace GistClient.Client
 
         public static void HandleResponse(IRestResponse response){
             var statusHeader = response.Headers.FirstOrDefault(x => x.Name == "Status");
-            var statusValue = statusHeader.Value.ToString();
-            if (!statusValue.Contains("201")){
-                String message = TrySerializeResponse(response)["message"];
-                throw new Exception(statusValue + ", "+message);
+            if (statusHeader != null){
+                var statusValue = statusHeader.Value.ToString();
+                if (!statusValue.Contains("201")){
+                    String message = TrySerializeResponse(response)["message"];
+                    throw new Exception(statusValue + ", " + message);
+                }
+            }
+            else{
+                throw new Exception("Github could not be reached. Verify your connection.");
             }
         }
 
