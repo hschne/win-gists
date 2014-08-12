@@ -14,9 +14,9 @@ namespace GistClient
 
         [STAThread]
         public static void Main(string[] args){
-            if (IsValidInput(args)){
+            if (UserInteraction.IsValidFilePath(args)){
                 filepath = args[0];
-                SetCredentialsIfNotExist();
+                UserInteraction.SetCredentialsIfNotExist();
                 Client.GistClient.SetAuthentication(SettingsManager.GetUserName(),
                     SettingsManager.GetPassword());
                 Console.WriteLine();
@@ -46,45 +46,6 @@ namespace GistClient
             finally{
                 Console.WriteLine("Exiting...");
             }
-        }
-
-        private static void SetCredentialsIfNotExist(){
-            if (!SettingsManager.CredentialsExist()){
-                Console.WriteLine("Please enter your username:");
-                String username = Console.ReadLine();
-                ReadPassword();
-                SettingsManager.SetUsername(username);
-            }
-        }
-
-        private static void ReadPassword(){
-            String password = "";
-            Console.WriteLine("Please enter your password: ");
-            ConsoleKeyInfo key;
-            do{
-                key = Console.ReadKey(true);
-                if (key.Key != ConsoleKey.Backspace && key.Key != ConsoleKey.Enter){
-                    password += key.KeyChar;
-                    Console.Write("*");
-                }
-                else{
-                    if (key.Key == ConsoleKey.Backspace && password.Length > 0){
-                        password = password.Substring(0, (password.Length - 1));
-                        Console.Write("\b \b");
-                    }
-                }
-            } while (key.Key != ConsoleKey.Enter);
-            SettingsManager.SetPassword(password.Encrypt());
-        }
-
-        private static Boolean IsValidInput(String[] args){
-            if (args.Length != 1){
-                Console.WriteLine("Invalid number of arguments. Expected filepath.");
-                return false;
-            }
-            if (File.Exists(args[0])) return true;
-            Console.WriteLine("Invalid filepath.");
-            return false;
         }
     }
 }
