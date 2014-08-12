@@ -5,11 +5,9 @@ A simple gist client for windows.
 
 #Planned
 
-Copy link to clipboard after upload.
-
 Open File in browser after upload.
 
-Add exception when no connection is present.
+Add exception when no connection is present (or Host cant be reached).
 
 Enable sending files anonymously. 
 
