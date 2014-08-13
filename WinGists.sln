@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GistClient", "GistClient\GistClient.csproj", "{89492AF6-582D-48B6-9044-EDE3B63722F0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GistClient.Test", "GistClient.Test\GistClient.Test.csproj", "{DE68A142-7C8E-4A5B-8F46-6F9138AAF62E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GistClientConfiguration", "GistClientConfiguration\GistClientConfiguration.csproj", "{1017E619-898B-46F2-A0F8-199711D03751}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +21,10 @@ Global
 		{DE68A142-7C8E-4A5B-8F46-6F9138AAF62E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE68A142-7C8E-4A5B-8F46-6F9138AAF62E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE68A142-7C8E-4A5B-8F46-6F9138AAF62E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1017E619-898B-46F2-A0F8-199711D03751}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1017E619-898B-46F2-A0F8-199711D03751}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1017E619-898B-46F2-A0F8-199711D03751}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1017E619-898B-46F2-A0F8-199711D03751}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
