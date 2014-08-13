@@ -17,9 +17,11 @@ namespace GistClient
         public static void Main(string[] args){
             if (UserInteraction.IsValidFilePath(args)){
                 filepath = args[0];
-                UserInteraction.SetCredentialsIfNotExist();
-                Client.GistClient.SetAuthentication(SettingsManager.Username,
-                    SettingsManager.Password);
+                if (!SettingsManager.UploadAnonymously) {
+                    UserInteraction.SetCredentialsIfNotExist();
+                    Client.GistClient.SetAuthentication(SettingsManager.Username,
+                        SettingsManager.Password);
+                }
                 Console.WriteLine();
                 Console.WriteLine("Uploading file...");
                 CreateAndSendRequest();

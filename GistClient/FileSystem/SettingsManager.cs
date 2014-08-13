@@ -74,5 +74,15 @@ namespace GistClient.FileSystem {
                 Settings.Default.Save();
             }
         }
+
+        public static bool UploadAnonymously {
+            get {
+                return Settings.Default.UploadAnonymously;
+            }
+            set {
+                Settings.Default.UploadAnonymously = value;
+                Settings.Default.Save();
+            }
+        }
     }
 }

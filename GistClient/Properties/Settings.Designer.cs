@@ -82,5 +82,17 @@ namespace GistClient.Properties {
                 this["CopyUrlToClipboard"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool UploadAnonymously {
+            get {
+                return ((bool)(this["UploadAnonymously"]));
+            }
+            set {
+                this["UploadAnonymously"] = value;
+            }
+        }
     }
 }
