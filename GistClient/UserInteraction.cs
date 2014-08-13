@@ -29,7 +29,7 @@ namespace GistClient
                 Console.WriteLine("Please enter your username:");
                 String username = Console.ReadLine();
                 Console.WriteLine("Please enter your password: ");
-                String password = ReadPassword();
+                String password = ReadPassword().Encrypt();
                 SetCredentials(username,password);
             }
         }
@@ -38,7 +38,7 @@ namespace GistClient
         private static void SetCredentials(String userName, String password)
         {
             SettingsManager.SetUsername(userName);
-            SettingsManager.SetUsername(password);
+            SettingsManager.SetPassword(password);
         }
 
         private static String ReadPassword()

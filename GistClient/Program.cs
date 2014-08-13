@@ -14,6 +14,8 @@ namespace GistClient
 
         [STAThread]
         public static void Main(string[] args){
+            args = new[] { @"D:\Documents\Source\win-gists\install\InstallContextMenu.reg" };
+            SettingsManager.ClearSettings();
             if (UserInteraction.IsValidFilePath(args)){
                 filepath = args[0];
                 UserInteraction.SetCredentialsIfNotExist();
