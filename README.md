@@ -5,7 +5,9 @@ A simple gist client for windows.
 
 #Planned
 
-Open File in browser after upload.
+Implement settings for anonymous uploading, opening file in browser after upload, saving userdata.
+
+Add logging feature (log4net).
 
 Enable sending files anonymously. 
 

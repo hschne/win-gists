@@ -5,6 +5,7 @@ using GistClient.Client;
 using GistClient.FileSystem;
 using RestSharp;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace GistClient
 {
@@ -14,8 +15,6 @@ namespace GistClient
 
         [STAThread]
         public static void Main(string[] args){
-            args = new[] { @"D:\Documents\Source\win-gists\install\InstallContextMenu.reg" };
-            SettingsManager.ClearSettings();
             if (UserInteraction.IsValidFilePath(args)){
                 filepath = args[0];
                 UserInteraction.SetCredentialsIfNotExist();
@@ -37,6 +36,8 @@ namespace GistClient
                 Console.WriteLine("File " + FileReader.GetFileName(filepath) + " uploaded successfully.");
                 Console.WriteLine("Url: " + url);
                 Console.WriteLine("Url has been copied to clipboard...");
+                Console.WriteLine("Opening in browser....");
+                Process.Start(url);
                 Clipboard.SetText(url);
             }
             catch (IOException e){
