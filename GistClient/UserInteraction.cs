@@ -30,15 +30,17 @@ namespace GistClient
                 String username = Console.ReadLine();
                 Console.WriteLine("Please enter your password: ");
                 String password = ReadPassword().Encrypt();
-                SetCredentials(username,password);
+                if (SettingsManager.SaveCredentials) {
+                    SetCredentials(username,password);
+                }
             }
         }
 
 
         private static void SetCredentials(String userName, String password)
         {
-            SettingsManager.SetUsername(userName);
-            SettingsManager.SetPassword(password);
+            SettingsManager.Username =userName;
+            SettingsManager.Password = password;
         }
 
         private static String ReadPassword()

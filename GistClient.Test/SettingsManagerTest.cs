@@ -7,22 +7,11 @@ namespace GistClient.Test
     [TestClass]
     public class SettingsManagerTest
     {
+       
         [TestMethod]
-        public void SavePassword(){
-            const string password = "testpassword";
-            SettingsManager.SetPassword(password.Encrypt());
-        }
-
-        [TestMethod]
-        public void SaveUserName(){
-            const string userName = "user";
-            SettingsManager.SetUsername(userName);
-        }
-
-        [TestMethod]
-        public void GetPassword(){
-            SavePassword();
-            String password = SettingsManager.GetPassword();
+        public void GetPassword() {
+            SettingsManager.Password = "testpassword".Encrypt();
+            String password = SettingsManager.Password;
             String clearText = password.Decrypt();
             Assert.IsTrue(clearText.Equals("testpassword"));
         }
