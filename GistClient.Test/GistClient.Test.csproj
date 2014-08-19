@@ -35,9 +35,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="RestSharp, Version=104.4.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\GistClient\bin\Debug\RestSharp.dll</HintPath>
+    <Reference Include="RestSharp">
+      <HintPath>..\packages\RestSharp.104.4.0\lib\net4\RestSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Security" />
@@ -58,10 +57,13 @@
     <Compile Include="FileReaderTest.cs" />
     <Compile Include="GistClientTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SettingsManagerTest.cs" />
     <Compile Include="UserInteractionTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GistClientConfiguration\GistClientConfiguration.csproj">
+      <Project>{1017e619-898b-46f2-a0f8-199711d03751}</Project>
+      <Name>GistClientConfiguration</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GistClient\GistClient.csproj">
       <Project>{89492af6-582d-48b6-9044-ede3b63722f0}</Project>
       <Name>GistClient</Name>
@@ -70,6 +72,9 @@
   <ItemGroup>
     <Content Include="testfiles\EmptyFile.txt" />
     <Content Include="testfiles\TestFile.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

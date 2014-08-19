@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.IO;
 using GistClientConfiguration.Configuration;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -30,7 +30,30 @@ namespace GistClientConfiguration.Test {
         }
 
         [TestMethod]
-        public void Save() {
+        public void Save(){
+            ConfigurationManager.Configuration = config;
+            ConfigurationManager.Folder = @"..\..\testfiles\";
+            ConfigurationManager.FileName = "testconfig.xml";
+            File.Delete(ConfigurationManager.Folder + ConfigurationManager.FileName);
+            ConfigurationManager.Save();
+            Assert.IsTrue(File.Exists(ConfigurationManager.Folder + ConfigurationManager.FileName));
+        }
+
+        [TestMethod]
+        public void Load(){
+            ConfigurationManager.Folder = @"..\..\testfiles\";
+            ConfigurationManager.FileName = "testconfig.xml";
+            ConfigurationManager.Load();
+            Assert.IsTrue(ConfigurationManager.Password != "");
+            Assert.IsFalse(ConfigurationManager.OpenAfterUpload);
+        }
+
+        [TestMethod]
+        public void CredentialsExist(){
+            ConfigurationManager.Folder = @"..\..\testfiles\";
+            ConfigurationManager.FileName = "testconfig.xml";
+            ConfigurationManager.Load();
+            Assert.IsTrue(ConfigurationManager.CredentialsExist());
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace GistClient.FileSystem
+namespace GistClient.Request
 {
     public static class FileReader
     {

@@ -2,7 +2,7 @@
 using System.Configuration;
 using System.Text;
 using System.Collections.Generic;
-using GistClient.FileSystem;
+using GistClient.Request;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace GistClient.Test

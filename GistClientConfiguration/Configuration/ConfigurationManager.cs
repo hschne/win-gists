@@ -4,19 +4,36 @@ using System.Reflection;
 using System.Xml.Serialization;
 
 namespace GistClientConfiguration.Configuration {
-    public static class ConfigurationManager {
-        public static String Folder = @"..\";
+    public static class ConfigurationManager
+    {
+        public static String Folder = Properties.Settings.Default.ConfigDirectory;
 
         public static String FileName = "Configuration.xml";
 
         public static Configuration Configuration { get; set; }
 
-        public static void Load() {
+        public static void Load(){
+            if (!File.Exists(Folder + FileName)){
+                CreateDefaultConfig();
+            }
             var deserializer = new XmlSerializer(typeof(Configuration));
-            TextReader reader = new StreamReader(Folder + FileName);
-            object obj = deserializer.Deserialize(reader);
-            Configuration = (Configuration)obj;
-            reader.Close();
+                TextReader reader = new StreamReader(Folder + FileName);
+                object obj = deserializer.Deserialize(reader);
+                Configuration = (Configuration)obj;
+                reader.Close();
+        }
+
+        private static void CreateDefaultConfig(){
+            var config = new Configuration(){
+                CopyUrlToClipboard = false,
+                OpenAfterUpload = false,
+                Password = "",
+                SaveCredentials = true,
+                UploadAnonymously = false,
+                Username = ""
+            };
+            Configuration = config;
+            Save();
         }
 
         public static void Save() {
@@ -24,6 +41,36 @@ namespace GistClientConfiguration.Configuration {
             using (TextWriter writer = new StreamWriter(Folder + FileName)) {
                 serializer.Serialize(writer, Configuration);
             }
+        }
+
+        public static void ClearSettings()
+        {
+            Type type = Configuration.GetType();
+            PropertyInfo[] myPropertyInfo = type.GetProperties(BindingFlags.Public | BindingFlags.Instance);
+            foreach (var propertyInfo in myPropertyInfo)
+            {
+                ClearPropertyValue(propertyInfo);
+            }
+        }
+
+        private static void ClearPropertyValue(PropertyInfo propertyInfo)
+        {
+            Type type = propertyInfo.PropertyType;
+            if (type == typeof(String))
+            {
+                propertyInfo.SetValue(Configuration, String.Empty, null);
+            }
+            if (type == typeof(Boolean))
+            {
+                propertyInfo.SetValue(Configuration, false, null);
+            }
+        }
+
+        public static bool CredentialsExist()
+        {
+            bool userExists = Username != String.Empty;
+            bool passwordExits = Password.Decrypt() != String.Empty;
+            return userExists && passwordExits;
         }
 
         public static String Password {
@@ -44,11 +91,7 @@ namespace GistClientConfiguration.Configuration {
             }
         }
 
-        public static bool CredentialsExist() {
-            bool userExists = Username != String.Empty;
-            bool passwordExits = Password.Decrypt() != String.Empty;
-            return userExists && passwordExits;
-        }
+        
 
         public static bool SaveCredentials {
             get {
@@ -68,23 +111,7 @@ namespace GistClientConfiguration.Configuration {
             }
         }
 
-        public static void ClearSettings() {
-            Type type = Configuration.GetType();
-            PropertyInfo[] myPropertyInfo = type.GetProperties(BindingFlags.Public | BindingFlags.Instance);
-            foreach (var propertyInfo in myPropertyInfo) {
-                ClearPropertyValue(propertyInfo);
-            }
-        }
-
-        private static void ClearPropertyValue( PropertyInfo propertyInfo ) {
-            Type type = propertyInfo.PropertyType;
-            if (type == typeof(String)) {
-                propertyInfo.SetValue(Configuration, String.Empty,null);
-            }
-            if (type == typeof(Boolean)) {
-                propertyInfo.SetValue(Configuration, false,null);
-            }
-        }
+       
 
         public static bool CopyUrlToClipboard {
             get {

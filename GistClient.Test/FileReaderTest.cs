@@ -1,6 +1,6 @@
 ﻿using System;
 using System.IO;
-using GistClient.FileSystem;
+using GistClient.Request;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace GistClient.Test
