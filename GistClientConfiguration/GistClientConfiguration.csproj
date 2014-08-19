@@ -53,6 +53,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Configuration\Configuration.cs" />
+    <Compile Include="Configuration\ConfigurationManager.cs" />
+    <Compile Include="Configuration\StringProtector.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ViewModel.cs" />
     <Page Include="MainWindow.xaml">

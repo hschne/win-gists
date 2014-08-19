@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GistClient.Test", "GistClie
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GistClientConfiguration", "GistClientConfiguration\GistClientConfiguration.csproj", "{1017E619-898B-46F2-A0F8-199711D03751}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GistClientConfiguration.Test", "GistClientConfiguration.Test\GistClientConfiguration.Test.csproj", "{7BD71D92-4D61-4BC9-97FC-CC7D53787750}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{1017E619-898B-46F2-A0F8-199711D03751}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1017E619-898B-46F2-A0F8-199711D03751}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1017E619-898B-46F2-A0F8-199711D03751}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BD71D92-4D61-4BC9-97FC-CC7D53787750}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BD71D92-4D61-4BC9-97FC-CC7D53787750}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BD71D92-4D61-4BC9-97FC-CC7D53787750}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BD71D92-4D61-4BC9-97FC-CC7D53787750}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
