@@ -56,8 +56,9 @@
     <Compile Include="Configuration\Configuration.cs" />
     <Compile Include="Configuration\ConfigurationManager.cs" />
     <Compile Include="Configuration\StringProtector.cs" />
+    <Compile Include="Helper\RelayCommand.cs" />
     <Compile Include="Properties\Annotations.cs" />
-    <Compile Include="ViewModel.cs" />
+    <Compile Include="ConfigurationViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

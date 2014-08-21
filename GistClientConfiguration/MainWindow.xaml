@@ -3,8 +3,21 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
+
         <CheckBox IsChecked="{Binding SaveCredentials, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Content="Save Credentials" HorizontalAlignment="Left" Margin="38,67,0,0" VerticalAlignment="Top"/>
-        <CheckBox Content="CheckBox" HorizontalAlignment="Left" Margin="38,108,0,0" VerticalAlignment="Top"/>
-        <CheckBox Content="CheckBox" HorizontalAlignment="Left" Margin="38,153,0,0" VerticalAlignment="Top"/>
+        <CheckBox IsChecked="{Binding OpenAfterUpload, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Content="Open after upload" HorizontalAlignment="Left" Margin="38,108,0,0" VerticalAlignment="Top"/>
+        <CheckBox IsChecked="{Binding CopyUrlToClipboard, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Content="Copy url To clipboard" HorizontalAlignment="Left" Margin="38,149,0,0" VerticalAlignment="Top"/>
+        <CheckBox IsChecked="{Binding UploadAnonymously, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Content="Upload anonymously" HorizontalAlignment="Left" Margin="38,188,0,0" VerticalAlignment="Top"/>
+        <Label Content="User Credentials" HorizontalAlignment="Left" Margin="260,27,0,0" VerticalAlignment="Top"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Height="31" Margin="260,105,0,0" VerticalAlignment="Top" Width="204">
+            <Label Content="Username" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <TextBox HorizontalAlignment="Right" Height="23" TextWrapping="Wrap" Text="{Binding Password, Mode=TwoWay}" VerticalAlignment="Center" Width="120" Margin="0,4"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Height="38" Margin="260,67,0,214" VerticalAlignment="Center" Width="190">
+            <Label Content="Password" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <TextBox HorizontalAlignment="Right" Height="23" TextWrapping="Wrap" Text="{Binding UserName, Mode=TwoWay}" VerticalAlignment="Top" Width="124"/>
+        </StackPanel>
+        <Button Content="Save" Command="{Binding SaveCommand}" HorizontalAlignment="Left" Margin="432,289,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Cancel" Command="{Binding CancelCommand}" HorizontalAlignment="Left" Margin="342,289,0,0" VerticalAlignment="Top" Width="75"/>
     </Grid>
 </Window>
