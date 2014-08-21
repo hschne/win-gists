@@ -1,17 +1,18 @@
 ﻿using System;
 using System.IO;
 using GistClientConfiguration.Configuration;
-
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace GistClientConfiguration.Test {
+namespace GistClientConfiguration.Test
+{
     [TestClass]
-    public class ConfigurationManagerTest {
+    public class ConfigurationManagerTest
+    {
         private static Configuration.Configuration config;
 
         [TestInitialize]
-        public void Initialize() {
-            config = new Configuration.Configuration() {
+        public void Initialize(){
+            config = new Configuration.Configuration{
                 CopyUrlToClipboard = true,
                 OpenAfterUpload = false,
                 Password = "testpassword".Encrypt(),
@@ -22,7 +23,7 @@ namespace GistClientConfiguration.Test {
         }
 
         [TestMethod]
-        public void ClearSettings() {
+        public void ClearSettings(){
             ConfigurationManager.Configuration = config;
             ConfigurationManager.ClearSettings();
             Assert.IsTrue(config.CopyUrlToClipboard == false);
@@ -46,6 +47,14 @@ namespace GistClientConfiguration.Test {
             ConfigurationManager.Load();
             Assert.IsTrue(ConfigurationManager.Password != "");
             Assert.IsFalse(ConfigurationManager.OpenAfterUpload);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof (Exception))]
+        public void LoadCorruptedFile(){
+            ConfigurationManager.Folder = @"..\..\testfiles\";
+            ConfigurationManager.FileName = "corruptedConfig.xml";
+            ConfigurationManager.Load();
         }
 
         [TestMethod]

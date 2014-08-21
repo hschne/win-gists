@@ -5,8 +5,6 @@ A simple gist client for windows.
 
 #Planned
 
-Make new Settings Robust (e.g Exception Handling).
-
 Add logging feature (log4net).
 
 Add Gui for settings (?)
