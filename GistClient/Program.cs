@@ -15,7 +15,7 @@ namespace GistClient
 
         [STAThread]
         public static void Main(string[] args){
-            ConfigurationManager.Load();
+            ConfigurationManager.Configuration = ConfigurationManager.LoadConfigurationFromFile();
             Console.WriteLine(ConfigurationManager.Folder + ConfigurationManager.FileName);
             if (UserInteraction.IsValidFilePath(args)){
                 filepath = args[0];

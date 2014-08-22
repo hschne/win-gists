@@ -48,7 +48,7 @@ namespace GistClientConfiguration.Configuration
             set { Configuration.UploadAnonymously = value; }
         }
 
-        public static void Load(){
+        public static Configuration LoadConfigurationFromFile(){
             if (!File.Exists(Folder + FileName)){
                 CreateDefaultConfig();
             }
@@ -56,7 +56,8 @@ namespace GistClientConfiguration.Configuration
             TextReader reader = new StreamReader(Folder + FileName);
             try{
                 object obj = deserializer.Deserialize(reader);
-                Configuration = (Configuration) obj;
+                var result = (Configuration) obj;
+                return result;
             }
             catch (Exception e){
                HandleException(e);
@@ -64,6 +65,7 @@ namespace GistClientConfiguration.Configuration
             finally{
                 reader.Close();
             }
+            return null;
         }
 
         private static void HandleException(Exception e){
@@ -99,6 +101,11 @@ namespace GistClientConfiguration.Configuration
             foreach (PropertyInfo propertyInfo in myPropertyInfo){
                 ClearPropertyValue(propertyInfo);
             }
+        }
+
+        public static bool ConfigurationChanged(){
+            Configuration configuration = LoadConfigurationFromFile();
+            return !Configuration.Equals(configuration);
         }
 
         private static void ClearPropertyValue(PropertyInfo propertyInfo){

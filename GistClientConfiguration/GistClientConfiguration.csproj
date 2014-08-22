@@ -36,6 +36,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -58,7 +59,7 @@
     <Compile Include="Configuration\StringProtector.cs" />
     <Compile Include="Helper\RelayCommand.cs" />
     <Compile Include="Properties\Annotations.cs" />
-    <Compile Include="ConfigurationViewModel.cs" />
+    <Compile Include="ViewModels\ConfigurationViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

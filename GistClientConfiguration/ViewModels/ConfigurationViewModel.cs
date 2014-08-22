@@ -1,18 +1,22 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows;
+using System.Windows.Forms;
 using System.Windows.Input;
 using GistClientConfiguration.Annotations;
 using GistClientConfiguration.Configuration;
 using GistClientConfiguration.Helper;
+using MessageBox = System.Windows.Forms.MessageBox;
 
-namespace GistClientConfiguration
+namespace GistClientConfiguration.ViewModels
 {
     public class ConfigurationViewModel : INotifyPropertyChanged
     {
         public ConfigurationViewModel(){
-            ConfigurationManager.Load();
+            ConfigurationManager.Configuration = ConfigurationManager.LoadConfigurationFromFile();
             SaveCommand = new RelayCommand(x => Save());
+            CancelCommand = new RelayCommand(x => Cancel());
         }
 
         public String UserName{
@@ -47,11 +51,28 @@ namespace GistClientConfiguration
 
         public ICommand SaveCommand { get; set; }
 
+        public ICommand CancelCommand { get; set; }
+
+        public Action CloseAction { get; set; }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public void Save(){
             ConfigurationManager.Save();
-            Console.WriteLine(ConfigurationManager.Configuration.ToString());
+            CloseAction();
+        }
+
+        public void Cancel(){
+            if (ConfigurationManager.ConfigurationChanged()){
+                DialogResult result = MessageBox.Show("Changes have not been saved. Are you sure you want to exit?",
+                    "Warning", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes){
+                    CloseAction();
+                }
+            }
+            else{
+                CloseAction();
+            }
         }
 
         [NotifyPropertyChangedInvocator]

@@ -44,7 +44,7 @@ namespace GistClientConfiguration.Test
         public void Load(){
             ConfigurationManager.Folder = @"..\..\testfiles\";
             ConfigurationManager.FileName = "testconfig.xml";
-            ConfigurationManager.Load();
+            ConfigurationManager.Configuration = ConfigurationManager.LoadConfigurationFromFile();
             Assert.IsTrue(ConfigurationManager.Password != "");
             Assert.IsFalse(ConfigurationManager.OpenAfterUpload);
         }
@@ -54,15 +54,32 @@ namespace GistClientConfiguration.Test
         public void LoadCorruptedFile(){
             ConfigurationManager.Folder = @"..\..\testfiles\";
             ConfigurationManager.FileName = "corruptedConfig.xml";
-            ConfigurationManager.Load();
+            ConfigurationManager.Configuration = ConfigurationManager.LoadConfigurationFromFile();
         }
 
         [TestMethod]
         public void CredentialsExist(){
             ConfigurationManager.Folder = @"..\..\testfiles\";
             ConfigurationManager.FileName = "testconfig.xml";
-            ConfigurationManager.Load();
+            ConfigurationManager.Configuration = ConfigurationManager.LoadConfigurationFromFile();
             Assert.IsTrue(ConfigurationManager.CredentialsExist());
+        }
+
+        [TestMethod]
+        public void ConfigHasNotChanged(){
+            ConfigurationManager.Folder = @"..\..\testfiles\";
+            ConfigurationManager.FileName = "testconfig.xml";
+            ConfigurationManager.Configuration = ConfigurationManager.LoadConfigurationFromFile();
+            Assert.IsFalse(ConfigurationManager.ConfigurationChanged());
+        }
+
+        [TestMethod]
+        public void ConfigHasChanged(){
+            ConfigurationManager.Folder = @"..\..\testfiles\";
+            ConfigurationManager.FileName = "testconfig.xml";
+            ConfigurationManager.Configuration = ConfigurationManager.LoadConfigurationFromFile();
+            ConfigurationManager.Password = "longdinglong";
+            Assert.IsTrue(ConfigurationManager.ConfigurationChanged());
         }
     }
 }
