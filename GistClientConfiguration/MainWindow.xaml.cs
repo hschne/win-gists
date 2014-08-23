@@ -1,12 +1,10 @@
 ﻿using System.Windows;
 using GistClientConfiguration.ViewModels;
+using MahApps.Metro.Controls;
 
 namespace GistClientConfiguration
 {
-    /// <summary>
-    ///     Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : MetroWindow
     {
         public MainWindow(){
             InitializeComponent();
