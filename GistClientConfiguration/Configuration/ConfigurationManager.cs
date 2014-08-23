@@ -89,6 +89,10 @@ namespace GistClientConfiguration.Configuration
         }
 
         public static void Save(){
+            if (!SaveCredentials){
+                Username = "";
+                Password = "";
+            }
             var serializer = new XmlSerializer(typeof (Configuration));
             using (TextWriter writer = new StreamWriter(Folder + FileName)){
                 serializer.Serialize(writer, Configuration);

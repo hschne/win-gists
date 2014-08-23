@@ -1,9 +1,11 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
+using System.Windows.Media.Animation;
 using GistClientConfiguration.Annotations;
 using GistClientConfiguration.Configuration;
 using GistClientConfiguration.Helper;
@@ -25,8 +27,10 @@ namespace GistClientConfiguration.ViewModels
         }
 
         public String Password{
-            get { return ConfigurationManager.Password; }
-            set { ConfigurationManager.Password = value; }
+            get{
+                return Regex.Replace(ConfigurationManager.Password.Decrypt(), ".", "x"); ;
+            }
+            set { ConfigurationManager.Password = value.Encrypt(); }
         }
 
         public Boolean SaveCredentials{

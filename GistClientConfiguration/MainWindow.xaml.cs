@@ -27,7 +27,6 @@ namespace GistClientConfiguration
                 AffirmativeButtonText = "Yes",
                 NegativeButtonText = "Cancel",
                 AnimateHide = false,
-                
                 ColorScheme = MetroDialogColorScheme.Theme
             };
 

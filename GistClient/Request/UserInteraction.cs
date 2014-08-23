@@ -6,6 +6,11 @@ namespace GistClient.Request
 {
     public static class UserInteraction
     {
+
+        public static String Username { get; set; }
+
+        public static String Password { get; set; }
+
         public static Boolean IsValidFilePath(String[] args){
             if (args.Length != 1){
                 Console.WriteLine(@"Invalid number of arguments. Expected filepath.");
@@ -20,11 +25,11 @@ namespace GistClient.Request
         public static void SetCredentialsIfNotExist(){
             if (!ConfigurationManager.CredentialsExist()){
                 Console.WriteLine(@"Please enter your username:");
-                String username = Console.ReadLine();
+                Username = Console.ReadLine();
                 Console.WriteLine(@"Please enter your password: ");
-                String password = ReadPassword().Encrypt();
+                Password = ReadPassword().Encrypt();
                 if (ConfigurationManager.SaveCredentials){
-                    SetCredentials(username, password);
+                    SetCredentials(Username, Password);
                 }
             }
         }

@@ -6,8 +6,8 @@
     <Grid Margin="0,0,0,1" HorizontalAlignment="Left" Width="402" >
         <StackPanel Margin="205,5,10,183">
             <TextBlock Margin="5,5,5,0" Style="{DynamicResource TextBlockStyle}" TextWrapping="Wrap" Text="Credentials"/>
-            <TextBox controls:TextboxHelper.FocusBorderBrush="{DynamicResource GrayBrush3}"  controls:TextboxHelper.MouseOverBorderBrush="{DynamicResource GrayBrush3}" Margin="5,5,5,15" controls:TextboxHelper.Watermark="Username" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="{Binding Password, Mode=TwoWay}" VerticalAlignment="Center" Width="141" />
-            <PasswordBox controls:TextboxHelper.FocusBorderBrush="{DynamicResource GrayBrush3}" controls:TextboxHelper.MouseOverBorderBrush="{DynamicResource GrayBrush3}" controls:TextboxHelper.ButtonCommandParameter="Password" Margin="5,15,10,5" controls:TextboxHelper.Watermark="Password" HorizontalAlignment="Left" Height="23" Password="" VerticalAlignment="Top" Width="140"/>
+            <TextBox controls:TextboxHelper.FocusBorderBrush="{DynamicResource GrayBrush3}"  controls:TextboxHelper.MouseOverBorderBrush="{DynamicResource GrayBrush3}" Margin="5,5,5,15" controls:TextboxHelper.Watermark="Username" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="{Binding UserName, Mode=TwoWay}" VerticalAlignment="Center" Width="141" />
+            <PasswordBox controls:TextboxHelper.FocusBorderBrush="{DynamicResource GrayBrush3}" controls:TextboxHelper.MouseOverBorderBrush="{DynamicResource GrayBrush3}" controls:TextboxHelper.ButtonCommandParameter="Password" Margin="5,15,10,5" controls:TextboxHelper.Watermark="Password"  HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" Width="140"/>
         </StackPanel>
         <Button  Content="Save" Command="{Binding SaveCommand}" Margin="274,297,0,0" HorizontalAlignment="Left" Width="102" Height="35" VerticalAlignment="Top"/>
         <Button Content="Cancel" Command="{Binding CancelCommand}" HorizontalAlignment="Left" Width="99" Margin="10,297,0,0" Height="35" VerticalAlignment="Top"/>

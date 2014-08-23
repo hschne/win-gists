@@ -7,6 +7,8 @@ A simple gist client for windows.
 
 Add proper password field.
 
+Rework save credentials if not exist mechanic.
+
 Add Dynamic behaviour to UI (e.g when upload anonymously is checked dont displayusername and password, and other dependencies). 
 
 Add Bubble popups for when the upload has finished. 

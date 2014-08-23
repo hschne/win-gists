@@ -16,13 +16,11 @@ namespace GistClient
         [STAThread]
         public static void Main(string[] args){
             ConfigurationManager.Configuration = ConfigurationManager.LoadConfigurationFromFile();
-            Console.WriteLine(ConfigurationManager.Folder + ConfigurationManager.FileName);
             if (UserInteraction.IsValidFilePath(args)){
                 filepath = args[0];
                 if (!ConfigurationManager.UploadAnonymously){
                     UserInteraction.SetCredentialsIfNotExist();
-                    Client.SetAuthentication(ConfigurationManager.Username,
-                        ConfigurationManager.Password);
+                    SetAuthentication();
                 }
                 Console.WriteLine();
                 Console.WriteLine("Uploading file...");
@@ -31,6 +29,19 @@ namespace GistClient
             Console.ReadLine();
         }
 
+
+        private static void SetAuthentication(){
+            if (ConfigurationManager.SaveCredentials)
+            {
+                Client.SetAuthentication(ConfigurationManager.Username,
+                    ConfigurationManager.Password);
+            }
+            else
+            {
+                Client.SetAuthentication(UserInteraction.Username,
+                    UserInteraction.Password);
+            }
+        }
 
         private static void CreateAndSendRequest(){
             try{
