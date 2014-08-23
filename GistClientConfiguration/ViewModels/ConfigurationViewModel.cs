@@ -55,6 +55,10 @@ namespace GistClientConfiguration.ViewModels
 
         public Action CloseAction { get; set; }
 
+        public delegate void ShowDialogHandler(object obj, RoutedEventArgs e);
+
+        public event ShowDialogHandler ShowDialog;
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public void Save(){
@@ -64,16 +68,15 @@ namespace GistClientConfiguration.ViewModels
 
         public void Cancel(){
             if (ConfigurationManager.ConfigurationChanged()){
-                DialogResult result = MessageBox.Show("Changes have not been saved. Are you sure you want to exit?",
-                    "Warning", MessageBoxButtons.YesNo);
-                if (result == DialogResult.Yes){
-                    CloseAction();
+                if (ShowDialog!= null){
+                    ShowDialog(this, null);
                 }
             }
             else{
                 CloseAction();
             }
         }
+
 
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null){
