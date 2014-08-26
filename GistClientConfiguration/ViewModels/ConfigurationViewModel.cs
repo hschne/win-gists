@@ -26,11 +26,8 @@ namespace GistClientConfiguration.ViewModels
             set { ConfigurationManager.Username = value; }
         }
 
-        public String Password{
-            get{
-                return Regex.Replace(ConfigurationManager.Password.Decrypt(), ".", "x"); ;
-            }
-            set { ConfigurationManager.Password = value.Encrypt(); }
+        public String SecurePassword{
+            set { ConfigurationManager.EncryptedPassword = value; }
         }
 
         public Boolean SaveCredentials{

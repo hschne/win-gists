@@ -45,7 +45,7 @@ namespace GistClientConfiguration.Test
             ConfigurationManager.Folder = @"..\..\testfiles\";
             ConfigurationManager.FileName = "testconfig.xml";
             ConfigurationManager.Configuration = ConfigurationManager.LoadConfigurationFromFile();
-            Assert.IsTrue(ConfigurationManager.Password != "");
+            Assert.IsTrue(ConfigurationManager.EncryptedPassword != "");
             Assert.IsFalse(ConfigurationManager.OpenAfterUpload);
         }
 
@@ -78,7 +78,7 @@ namespace GistClientConfiguration.Test
             ConfigurationManager.Folder = @"..\..\testfiles\";
             ConfigurationManager.FileName = "testconfig.xml";
             ConfigurationManager.Configuration = ConfigurationManager.LoadConfigurationFromFile();
-            ConfigurationManager.Password = "longdinglong";
+            ConfigurationManager.EncryptedPassword = "longdinglong";
             Assert.IsTrue(ConfigurationManager.ConfigurationChanged());
         }
     }

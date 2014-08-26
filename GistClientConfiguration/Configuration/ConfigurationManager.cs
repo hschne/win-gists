@@ -16,7 +16,7 @@ namespace GistClientConfiguration.Configuration
 
         public static Configuration Configuration { get; set; }
 
-        public static String Password{
+        public static String EncryptedPassword{
             get { return Configuration.Password; }
             set { Configuration.Password = value; }
         }
@@ -91,7 +91,7 @@ namespace GistClientConfiguration.Configuration
         public static void Save(){
             if (!SaveCredentials){
                 Username = "";
-                Password = "";
+                EncryptedPassword = "";
             }
             var serializer = new XmlSerializer(typeof (Configuration));
             using (TextWriter writer = new StreamWriter(Folder + FileName)){
@@ -124,7 +124,7 @@ namespace GistClientConfiguration.Configuration
 
         public static bool CredentialsExist(){
             bool userExists = Username != String.Empty;
-            bool passwordExits = Password.Decrypt() != String.Empty;
+            bool passwordExits = EncryptedPassword.Decrypt() != String.Empty;
             return userExists && passwordExits;
         }
     }

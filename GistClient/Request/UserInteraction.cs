@@ -22,22 +22,21 @@ namespace GistClient.Request
         }
 
 
-        public static void SetCredentialsIfNotExist(){
+        public static void PersistCredentialsIfNotExist(){
             if (!ConfigurationManager.CredentialsExist()){
                 Console.WriteLine(@"Please enter your username:");
                 Username = Console.ReadLine();
                 Console.WriteLine(@"Please enter your password: ");
                 Password = ReadPassword().Encrypt();
                 if (ConfigurationManager.SaveCredentials){
-                    SetCredentials(Username, Password);
+                    PersistCredentials(Username, Password);
                 }
             }
         }
 
-
-        private static void SetCredentials(String userName, String password){
+        private static void PersistCredentials(String userName, String password){
             ConfigurationManager.Username = userName;
-            ConfigurationManager.Password = password;
+            ConfigurationManager.EncryptedPassword = password;
             ConfigurationManager.Save();
         }
 

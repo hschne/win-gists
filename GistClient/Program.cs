@@ -19,8 +19,8 @@ namespace GistClient
             if (UserInteraction.IsValidFilePath(args)){
                 filepath = args[0];
                 if (!ConfigurationManager.UploadAnonymously){
-                    UserInteraction.SetCredentialsIfNotExist();
-                    SetAuthentication();
+                    UserInteraction.PersistCredentialsIfNotExist();
+                    SetRestClientAuthentication();
                 }
                 Console.WriteLine();
                 Console.WriteLine("Uploading file...");
@@ -30,11 +30,11 @@ namespace GistClient
         }
 
 
-        private static void SetAuthentication(){
+        private static void SetRestClientAuthentication(){
             if (ConfigurationManager.SaveCredentials)
             {
                 Client.SetAuthentication(ConfigurationManager.Username,
-                    ConfigurationManager.Password);
+                    ConfigurationManager.EncryptedPassword);
             }
             else
             {
