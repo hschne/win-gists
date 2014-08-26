@@ -50,6 +50,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExecutionConfiguration.cs" />
+    <Compile Include="Executor.cs" />
     <Compile Include="Request\FileReader.cs" />
     <Compile Include="Request\Client.cs" />
     <Compile Include="Program.cs" />

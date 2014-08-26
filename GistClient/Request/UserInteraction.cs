@@ -6,10 +6,9 @@ namespace GistClient.Request
 {
     public static class UserInteraction
     {
-
         public static String Username { get; set; }
 
-        public static String Password { get; set; }
+        public static String EncryptedPassword { get; set; }
 
         public static Boolean IsValidFilePath(String[] args){
             if (args.Length != 1){
@@ -21,23 +20,11 @@ namespace GistClient.Request
             return false;
         }
 
-
-        public static void PersistCredentialsIfNotExist(){
-            if (!ConfigurationManager.CredentialsExist()){
-                Console.WriteLine(@"Please enter your username:");
-                Username = Console.ReadLine();
-                Console.WriteLine(@"Please enter your password: ");
-                Password = ReadPassword().Encrypt();
-                if (ConfigurationManager.SaveCredentials){
-                    PersistCredentials(Username, Password);
-                }
-            }
-        }
-
-        private static void PersistCredentials(String userName, String password){
-            ConfigurationManager.Username = userName;
-            ConfigurationManager.EncryptedPassword = password;
-            ConfigurationManager.Save();
+        public static void ReadCredentials(){
+            Console.WriteLine(@"Please enter your username:");
+            Username = Console.ReadLine();
+            Console.WriteLine(@"Please enter your password: ");
+            EncryptedPassword = ReadPassword().Encrypt();
         }
 
         private static String ReadPassword(){
