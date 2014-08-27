@@ -21,6 +21,11 @@ namespace GistClientConfiguration.ViewModels
             CancelCommand = new RelayCommand(x => Cancel());
         }
 
+        public Visibility CredentialsVisible
+        {
+            get { return UploadAnonymously ? Visibility.Collapsed : Visibility.Visible; }
+        }
+
         public String UserName{
             get { return ConfigurationManager.Username; }
             set { ConfigurationManager.Username = value; }
@@ -28,11 +33,6 @@ namespace GistClientConfiguration.ViewModels
 
         public String SecurePassword{
             set { ConfigurationManager.EncryptedPassword = value; }
-        }
-
-        public Boolean SaveCredentials{
-            get { return ConfigurationManager.SaveCredentials; }
-            set { ConfigurationManager.SaveCredentials = value; }
         }
 
         public Boolean OpenAfterUpload{
@@ -47,7 +47,10 @@ namespace GistClientConfiguration.ViewModels
 
         public Boolean UploadAnonymously{
             get { return ConfigurationManager.UploadAnonymously; }
-            set { ConfigurationManager.UploadAnonymously = value; }
+            set{
+                ConfigurationManager.UploadAnonymously = value;
+                OnPropertyChanged("CredentialsVisible");
+            }
         }
 
         public ICommand SaveCommand { get; set; }

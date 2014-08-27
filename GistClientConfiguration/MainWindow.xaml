@@ -1,11 +1,11 @@
 ﻿<controls:MetroWindow xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-                      xmlns:helper="clr-namespace:GistClientConfiguration.Helper"
                       x:Class="GistClientConfiguration.MainWindow"
                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:helper="clr-namespace:GistClientConfiguration.Helper"
                       Title="MainWindow" Height="374" Width="412">
     <Grid Margin="0,0,0,1" HorizontalAlignment="Left" Width="402">
-        <StackPanel Margin="205,10,10,167">
+        <StackPanel Style="{DynamicResource FadeInStyle}" Visibility="{Binding CredentialsVisible}" Name="CredentialsPanel" Margin="205,10,10,167">
             <TextBlock Margin="5,5,5,0" Style="{DynamicResource TextBlockStyle}" TextWrapping="Wrap" Text="Credentials" />
             <TextBox controls:TextboxHelper.FocusBorderBrush="{DynamicResource GrayBrush3}"
                      controls:TextboxHelper.MouseOverBorderBrush="{DynamicResource GrayBrush3}" Margin="5,5,5,10"
@@ -21,12 +21,9 @@
         <Button Content="Cancel" Command="{Binding CancelCommand}" HorizontalAlignment="Left" Width="99"
                 Margin="10,297,0,0" Height="35" VerticalAlignment="Top" />
         <StackPanel HorizontalAlignment="Left" Height="140" Margin="10,10,0,0" VerticalAlignment="Top" Width="137">
-            <controls:ToggleSwitch
-                IsChecked="{Binding UploadAnonymously, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                Header="Anonymous upload" OnLabel="Yes" OffLabel="No" Margin="2,0,-12,0" Height="58" />
-            <controls:ToggleSwitch
-                IsChecked="{Binding SaveCredentials, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                Header="Save credentials" OnLabel="Yes" OffLabel="No" Margin="3,0,-12,0" Height="58" />
+            <controls:ToggleSwitch Style="{DynamicResource TriggerVisibilityStyle}" Name="ToggleSwitch" IsChecked="{Binding UploadAnonymously, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                Header="Anonymous upload" OnLabel="Yes" OffLabel="No" Margin="2,0,-12,0" Height="58" >
+            </controls:ToggleSwitch>
         </StackPanel>
         <StackPanel HorizontalAlignment="Left" Height="122" Margin="10,155,0,0" VerticalAlignment="Top" Width="137">
             <controls:ToggleSwitch
