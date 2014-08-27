@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Security;
 using System.Windows;
 using System.Windows.Controls;
@@ -19,11 +20,11 @@ namespace GistClientConfiguration
             viewModel = new ConfigurationViewModel();
             DataContext = viewModel;
             viewModel.ShowDialog += ShowMessageDialog;
+            
             if (viewModel.CloseAction == null){
                 viewModel.CloseAction = Close;
             }
         }
-
 
         private async void ShowMessageDialog(object sender, RoutedEventArgs e)
         {

@@ -5,9 +5,7 @@ A simple gist client for windows.
 
 #Planned
 
-Rework save credentials if not exist mechanic.
-
-Add Dynamic behaviour to UI (e.g when upload anonymously is checked dont displayusername and password, and other dependencies). 
+Make closing window impossible.
 
 Add Bubble popups for when the upload has finished. 
 
