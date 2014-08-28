@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Data.Odbc;
 using System.Security;
 using System.Windows;
 using System.Windows.Controls;
@@ -12,17 +13,28 @@ namespace GistClientConfiguration
 {
     public partial class MainWindow : MetroWindow
     {
+        private MessageDialogResult result;
 
         private ConfigurationViewModel viewModel;
 
         public MainWindow(){
             InitializeComponent();
             viewModel = new ConfigurationViewModel();
+            this.Closing += CloseWindow;
             DataContext = viewModel;
             viewModel.ShowDialog += ShowMessageDialog;
             
             if (viewModel.CloseAction == null){
                 viewModel.CloseAction = Close;
+            }
+        }
+
+        private void CloseWindow(Object sender, CancelEventArgs e){
+            if (ConfigurationManager.ConfigurationChanged()){
+                ShowMessageDialog(null, null);
+                if (result == MessageDialogResult.Negative){
+                    e.Cancel = true;
+                }
             }
         }
 
@@ -37,7 +49,7 @@ namespace GistClientConfiguration
                 AnimateHide = false,
                 ColorScheme = MetroDialogColorScheme.Theme
             };
-            MessageDialogResult result = await this.ShowMessageAsync("Warning", "You have unsaved changes. Are you sure you want to exit? ",
+            result = await this.ShowMessageAsync("Warning", "You have unsaved changes. Are you sure you want to exit? ",
                 MessageDialogStyle.AffirmativeAndNegative, mySettings);
             if (result == MessageDialogResult.Affirmative){
                 Close();
