@@ -5,10 +5,11 @@ A simple gist client for windows.
 
 #Planned
 
-Transfer all functionality from Gistclient to Uploader Program.
+Add tests for uploader.
+
+Change name of GistClientConfig to WinGists Config (or something).
 
 Add Bubble popups for when the upload has finished. 
 
 Add Installation. 
 
-Add logging feature (log4net)
