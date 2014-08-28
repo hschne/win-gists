@@ -5,11 +5,9 @@ A simple gist client for windows.
 
 #Planned
 
-Make closing window impossible.
+Transfer all functionality from Gistclient to Uploader Program.
 
 Add Bubble popups for when the upload has finished. 
-
-Add Settings for bubble popups.
 
 Add Installation. 
 
