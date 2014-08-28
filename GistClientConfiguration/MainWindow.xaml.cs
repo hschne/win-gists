@@ -1,9 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Data.Odbc;
 using System.Security;
 using System.Windows;
-using System.Windows.Controls;
 using GistClientConfiguration.Configuration;
 using GistClientConfiguration.ViewModels;
 using MahApps.Metro.Controls;
@@ -13,17 +11,16 @@ namespace GistClientConfiguration
 {
     public partial class MainWindow : MetroWindow
     {
+        private readonly ConfigurationViewModel viewModel;
         private MessageDialogResult result;
-
-        private ConfigurationViewModel viewModel;
 
         public MainWindow(){
             InitializeComponent();
             viewModel = new ConfigurationViewModel();
-            this.Closing += CloseWindow;
+            Closing += CloseWindow;
             DataContext = viewModel;
             viewModel.ShowDialog += ShowMessageDialog;
-            
+
             if (viewModel.CloseAction == null){
                 viewModel.CloseAction = Close;
             }
@@ -38,20 +35,20 @@ namespace GistClientConfiguration
             }
         }
 
-        private async void ShowMessageDialog(object sender, RoutedEventArgs e)
-        {
+        private async void ShowMessageDialog(object sender, RoutedEventArgs e){
             MetroDialogOptions.ColorScheme = MetroDialogColorScheme.Theme;
 
-            var mySettings = new MetroDialogSettings()
-            {
+            var mySettings = new MetroDialogSettings{
                 AffirmativeButtonText = "Yes",
                 NegativeButtonText = "Cancel",
                 AnimateHide = false,
                 ColorScheme = MetroDialogColorScheme.Theme
             };
-            result = await this.ShowMessageAsync("Warning", "You have unsaved changes. Are you sure you want to exit? ",
+            MessageDialogResult thisResult = await this.ShowMessageAsync("Warning", "You have unsaved changes. Are you sure you want to exit? ",
                 MessageDialogStyle.AffirmativeAndNegative, mySettings);
-            if (result == MessageDialogResult.Affirmative){
+            result = thisResult;
+            if (thisResult == MessageDialogResult.Affirmative)
+            {
                 Close();
             }
         }

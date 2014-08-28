@@ -48,6 +48,11 @@ namespace GistClientConfiguration.Configuration
             set { Configuration.UploadAnonymously = value; }
         }
 
+        public static bool ShowBubbleNotifications{
+            get { return Configuration.ShowBubbleNotifications; }
+            set { Configuration.ShowBubbleNotifications = value; }
+        }
+
         public static Configuration LoadConfigurationFromFile(){
             if (!File.Exists(Folder + FileName)){
                 CreateDefaultConfig();
@@ -79,6 +84,7 @@ namespace GistClientConfiguration.Configuration
             var config = new Configuration{
                 CopyUrlToClipboard = false,
                 OpenAfterUpload = false,
+                ShowBubbleNotifications = false,
                 Password = "",
                 SaveCredentials = true,
                 UploadAnonymously = false,

@@ -1,28 +1,25 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text.RegularExpressions;
 using System.Windows;
-using System.Windows.Forms;
 using System.Windows.Input;
-using System.Windows.Media.Animation;
 using GistClientConfiguration.Annotations;
 using GistClientConfiguration.Configuration;
 using GistClientConfiguration.Helper;
-using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace GistClientConfiguration.ViewModels
 {
     public class ConfigurationViewModel : INotifyPropertyChanged
     {
+        public delegate void ShowDialogHandler(object obj, RoutedEventArgs e);
+
         public ConfigurationViewModel(){
             ConfigurationManager.Configuration = ConfigurationManager.LoadConfigurationFromFile();
             SaveCommand = new RelayCommand(x => Save());
             CancelCommand = new RelayCommand(x => Cancel());
         }
 
-        public Visibility CredentialsVisible
-        {
+        public Visibility CredentialsVisible{
             get { return UploadAnonymously ? Visibility.Collapsed : Visibility.Visible; }
         }
 
@@ -53,17 +50,20 @@ namespace GistClientConfiguration.ViewModels
             }
         }
 
+        public Boolean ShowBubbleNotifications{
+            get { return ConfigurationManager.ShowBubbleNotifications; }
+            set { ConfigurationManager.ShowBubbleNotifications = value; }
+        }
+
+
         public ICommand SaveCommand { get; set; }
 
         public ICommand CancelCommand { get; set; }
 
         public Action CloseAction { get; set; }
 
-        public delegate void ShowDialogHandler(object obj, RoutedEventArgs e);
-
-        public event ShowDialogHandler ShowDialog;
-
         public event PropertyChangedEventHandler PropertyChanged;
+        public event ShowDialogHandler ShowDialog;
 
         public void Save(){
             ConfigurationManager.Save();
@@ -72,7 +72,7 @@ namespace GistClientConfiguration.ViewModels
 
         public void Cancel(){
             if (ConfigurationManager.ConfigurationChanged()){
-                if (ShowDialog!= null){
+                if (ShowDialog != null){
                     ShowDialog(this, null);
                 }
             }

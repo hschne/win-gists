@@ -34,5 +34,10 @@
                 IsChecked="{Binding CopyUrlToClipboard, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 Header="Copy url " OnLabel="Yes" OffLabel="No" Margin="0,0,-12,0" Height="58" />
         </StackPanel>
+        <StackPanel HorizontalAlignment="Left" Height="140" Margin="205,155,0,0" VerticalAlignment="Top" Width="137">
+            <controls:ToggleSwitch 
+        		IsChecked="{Binding ShowBubbleNotifications, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+        		Header="Show notifications" OnLabel="Yes" OffLabel="No" Margin="0,0,0,0" Height="58" />
+        </StackPanel>
     </Grid>
 </controls:MetroWindow>

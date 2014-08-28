@@ -16,12 +16,16 @@ namespace GistClientConfiguration.Configuration
 
         public Boolean UploadAnonymously { get; set; }
 
+        public Boolean ShowBubbleNotifications { get; set; }
+
         protected bool Equals(Configuration other){
             return string.Equals(Username, other.Username) && string.Equals(Password, other.Password) &&
                    SaveCredentials.Equals(other.SaveCredentials) && OpenAfterUpload.Equals(other.OpenAfterUpload) &&
                    CopyUrlToClipboard.Equals(other.CopyUrlToClipboard) &&
-                   UploadAnonymously.Equals(other.UploadAnonymously);
+                   UploadAnonymously.Equals(other.UploadAnonymously) &&
+                   ShowBubbleNotifications.Equals(other.ShowBubbleNotifications);
         }
+
 
         public override int GetHashCode(){
             unchecked{
@@ -31,6 +35,7 @@ namespace GistClientConfiguration.Configuration
                 hashCode = (hashCode*397) ^ OpenAfterUpload.GetHashCode();
                 hashCode = (hashCode*397) ^ CopyUrlToClipboard.GetHashCode();
                 hashCode = (hashCode*397) ^ UploadAnonymously.GetHashCode();
+                hashCode = (hashCode*397) ^ ShowBubbleNotifications.GetHashCode();
                 return hashCode;
             }
         }
