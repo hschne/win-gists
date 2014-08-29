@@ -8,7 +8,7 @@ using Uploader.Request;
 namespace Uploader.Test
 {
     [TestClass]
-    public class GistClientTest
+    public class UploaderTest
     {
         [TestMethod]
         public void SendAnonymously(){
