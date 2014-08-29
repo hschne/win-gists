@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using GistClientConfiguration.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RestSharp;
 using Uploader.Request;
+using WinGistsConfiguration.Configuration;
 
 namespace Uploader.Test
 {
@@ -23,6 +23,7 @@ namespace Uploader.Test
         public void SendRequestBadCredentials(){
             const string filepath = @"..\..\testfiles\TestFile.txt";
             RestRequest request = RequestFactory.CreateRequest(filepath);
+            "tha".Encrypt();
             Client.SetAuthentication("My", "Credentials".Encrypt());
             Dictionary<string, string> response = Client.SendRequest(request);
             Assert.IsTrue(response != null);

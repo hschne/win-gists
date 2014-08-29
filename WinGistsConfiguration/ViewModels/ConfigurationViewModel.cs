@@ -4,10 +4,10 @@ using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
 using GistClientConfiguration.Annotations;
-using GistClientConfiguration.Configuration;
-using GistClientConfiguration.Helper;
+using WinGistsConfiguration.Configuration;
+using WinGistsConfiguration.Helper;
 
-namespace GistClientConfiguration.ViewModels
+namespace WinGistsConfiguration.ViewModels
 {
     public class ConfigurationViewModel : INotifyPropertyChanged
     {

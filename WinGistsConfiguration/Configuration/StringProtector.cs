@@ -5,7 +5,7 @@ using System.Security;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace GistClientConfiguration.Configuration
+namespace WinGistsConfiguration.Configuration
 {
     public static class StringProtector
     {

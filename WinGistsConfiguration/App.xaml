@@ -1,7 +1,6 @@
-﻿<Application x:Class="GistClientConfiguration.App"
+﻿<Application x:Class="WinGistsConfiguration.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:helper="clr-namespace:GistClientConfiguration.Helper"
              xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
              StartupUri="MainWindow.xaml">
     <Application.Resources>

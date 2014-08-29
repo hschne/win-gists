@@ -1,18 +1,18 @@
 ﻿using System;
 using System.IO;
-using GistClientConfiguration.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using WinGistsConfiguration.Configuration;
 
 namespace GistClientConfiguration.Test
 {
     [TestClass]
     public class ConfigurationManagerTest
     {
-        private static Configuration.Configuration config;
+        private static Configuration config;
 
         [TestInitialize]
         public void Initialize(){
-            config = new Configuration.Configuration{
+            config = new Configuration{
                 CopyUrlToClipboard = true,
                 OpenAfterUpload = false,
                 Password = "testpassword".Encrypt(),

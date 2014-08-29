@@ -103,9 +103,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GistClientConfiguration\GistClientConfiguration.csproj">
-      <Project>{1017e619-898b-46f2-a0f8-199711d03751}</Project>
-      <Name>GistClientConfiguration</Name>
+    <ProjectReference Include="..\WinGistsConfiguration\WinGistsConfiguration.csproj">
+      <Project>{1017E619-898B-46F2-A0F8-199711D03751}</Project>
+      <Name>WinGistsConfiguration</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

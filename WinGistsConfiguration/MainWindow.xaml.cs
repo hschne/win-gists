@@ -2,12 +2,12 @@
 using System.ComponentModel;
 using System.Security;
 using System.Windows;
-using GistClientConfiguration.Configuration;
-using GistClientConfiguration.ViewModels;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
+using WinGistsConfiguration.Configuration;
+using WinGistsConfiguration.ViewModels;
 
-namespace GistClientConfiguration
+namespace WinGistsConfiguration
 {
     public partial class MainWindow : MetroWindow
     {

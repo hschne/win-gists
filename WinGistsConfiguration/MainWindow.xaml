@@ -1,5 +1,5 @@
 ﻿<controls:MetroWindow xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-                      x:Class="GistClientConfiguration.MainWindow"
+                      x:Class="WinGistsConfiguration.MainWindow"
                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                       Title="MainWindow" Height="374" Width="412">

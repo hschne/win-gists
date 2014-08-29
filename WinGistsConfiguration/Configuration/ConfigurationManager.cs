@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Xml;
 using System.Xml.Serialization;
-using GistClientConfiguration.Properties;
+using WinGistsConfiguration.Properties;
 
-namespace GistClientConfiguration.Configuration
+namespace WinGistsConfiguration.Configuration
 {
     public static class ConfigurationManager
     {
@@ -65,7 +64,7 @@ namespace GistClientConfiguration.Configuration
                 return result;
             }
             catch (Exception e){
-               HandleException(e);
+                HandleException(e);
             }
             finally{
                 reader.Close();
@@ -77,7 +76,7 @@ namespace GistClientConfiguration.Configuration
             if (e.GetType() == typeof (XmlException)){
                 throw new Exception("Error loading settings file: " + e.Message);
             }
-            throw new Exception("Settings file cannot be opened: "+e.Message);
+            throw new Exception("Settings file cannot be opened: " + e.Message);
         }
 
         private static void CreateDefaultConfig(){

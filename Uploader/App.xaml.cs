@@ -1,18 +1,18 @@
 ﻿using System;
 using System.IO;
 using System.Windows;
-using GistClientConfiguration.Configuration;
+using WinGistsConfiguration.Configuration;
 
 namespace Uploader
 {
     public partial class App : Application
     {
         protected override void OnStartup(StartupEventArgs e){
-            String[] args = new [] { @"E:\Source\win-gists\README.md"};
+            String[] args = e.Args;
             if (IsValidInput(args)){
                 String filepath = args[0];
                 var executionConfiguration = new ExecutionConfiguration{
-                    filepath = filepath,
+                    Filepath = filepath,
                     Configuration = ConfigurationManager.LoadConfigurationFromFile()
                 };
                 var executor = new Executor(executionConfiguration);

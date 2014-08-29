@@ -54,7 +54,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GistClientConfiguration\GistClientConfiguration.csproj">
+    <ProjectReference Include="..\WinGistsConfiguration\WinGistsConfiguration.csproj">
       <Project>{1017e619-898b-46f2-a0f8-199711d03751}</Project>
       <Name>GistClientConfiguration</Name>
     </ProjectReference>

@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GistClientConfiguration", "GistClientConfiguration\GistClientConfiguration.csproj", "{1017E619-898B-46F2-A0F8-199711D03751}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GistClientConfiguration.Test", "GistClientConfiguration.Test\GistClientConfiguration.Test.csproj", "{7BD71D92-4D61-4BC9-97FC-CC7D53787750}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uploader", "Uploader\Uploader.csproj", "{EE5594F6-7748-4201-8011-08D45279A5F5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uploader.Test", "Uploader.Test\Uploader.Test.csproj", "{DE68A142-7C8E-4A5B-8F46-6F9138AAF62E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinGistsConfiguration", "WinGistsConfiguration\WinGistsConfiguration.csproj", "{1017E619-898B-46F2-A0F8-199711D03751}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinGistsConfiguration.Test", "WinGistsConfiguration.Test\WinGistsConfiguration.Test.csproj", "{7BD71D92-4D61-4BC9-97FC-CC7D53787750}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,14 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1017E619-898B-46F2-A0F8-199711D03751}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1017E619-898B-46F2-A0F8-199711D03751}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1017E619-898B-46F2-A0F8-199711D03751}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1017E619-898B-46F2-A0F8-199711D03751}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7BD71D92-4D61-4BC9-97FC-CC7D53787750}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7BD71D92-4D61-4BC9-97FC-CC7D53787750}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7BD71D92-4D61-4BC9-97FC-CC7D53787750}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7BD71D92-4D61-4BC9-97FC-CC7D53787750}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EE5594F6-7748-4201-8011-08D45279A5F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EE5594F6-7748-4201-8011-08D45279A5F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE5594F6-7748-4201-8011-08D45279A5F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +25,14 @@ Global
 		{DE68A142-7C8E-4A5B-8F46-6F9138AAF62E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE68A142-7C8E-4A5B-8F46-6F9138AAF62E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE68A142-7C8E-4A5B-8F46-6F9138AAF62E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1017E619-898B-46F2-A0F8-199711D03751}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1017E619-898B-46F2-A0F8-199711D03751}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1017E619-898B-46F2-A0F8-199711D03751}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1017E619-898B-46F2-A0F8-199711D03751}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BD71D92-4D61-4BC9-97FC-CC7D53787750}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BD71D92-4D61-4BC9-97FC-CC7D53787750}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BD71D92-4D61-4BC9-97FC-CC7D53787750}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BD71D92-4D61-4BC9-97FC-CC7D53787750}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

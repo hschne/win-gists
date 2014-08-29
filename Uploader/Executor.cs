@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Windows;
-using GistClientConfiguration.Configuration;
 using RestSharp;
 using Uploader.Request;
+using WinGistsConfiguration.Configuration;
 
 namespace Uploader
 {
@@ -37,7 +37,7 @@ namespace Uploader
 
         private void CreateAndSendRequest(){
             try{
-                RestRequest request = RequestFactory.CreateRequest(ExecutionConfiguration.filepath);
+                RestRequest request = RequestFactory.CreateRequest(ExecutionConfiguration.Filepath);
                 Dictionary<string, string> response = Client.SendRequest(request);
                 String url = response["html_url"];
                 if (ConfigurationManager.CopyUrlToClipboard){

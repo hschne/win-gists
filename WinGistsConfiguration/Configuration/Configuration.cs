@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GistClientConfiguration.Configuration
+namespace WinGistsConfiguration.Configuration
 {
     public class Configuration
     {

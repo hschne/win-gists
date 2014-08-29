@@ -1,11 +1,11 @@
 ﻿using System;
-using GistClientConfiguration.Configuration;
+using WinGistsConfiguration.Configuration;
 
 namespace Uploader
 {
     public class ExecutionConfiguration
     {
-        public String filepath { get; set; }
+        public String Filepath { get; set; }
         public Configuration Configuration { get; set; }
     }
 }

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using GistClientConfiguration.Configuration;
 using RestSharp;
 using RestSharp.Deserializers;
+using WinGistsConfiguration.Configuration;
 
 namespace Uploader.Request
 {
