@@ -26,9 +26,8 @@ namespace Uploader
                 return;
             }
             if (!ConfigurationManager.CredentialsExist()){
-                Console.WriteLine(
-                    "Error: No username or password have been set. Please set credentials in configuration manager.");
-                Console.ReadLine();
+                //add notification
+                return;
             }
             Client.SetAuthentication(ConfigurationManager.Username,
                 ConfigurationManager.EncryptedPassword);
@@ -41,27 +40,20 @@ namespace Uploader
                 RestRequest request = RequestFactory.CreateRequest(ExecutionConfiguration.filepath);
                 Dictionary<string, string> response = Client.SendRequest(request);
                 String url = response["html_url"];
-                Console.WriteLine("File " + FileReader.GetFileName(ExecutionConfiguration.filepath) +
-                                  " uploaded successfully.");
-                Console.WriteLine("Url: " + url);
                 if (ConfigurationManager.CopyUrlToClipboard){
-                    Console.WriteLine("Url has been copied to clipboard...");
+                    // add notification
                     Clipboard.SetText(url);
                 }
                 if (ConfigurationManager.OpenAfterUpload){
-                    Console.WriteLine("Opening in browser....");
+                    // add notification
                     Process.Start(url);
                 }
             }
             catch (IOException){
-                Console.WriteLine("Error: File is already used by another program.");
+                //notification
             }
             catch (Exception e){
-                Console.WriteLine("An error occured: " + e.Message);
-            }
-            finally{
-                Console.WriteLine(@"Exiting...");
-                Console.ReadLine();
+                //notification
             }
         }
     }

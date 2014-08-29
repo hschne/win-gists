@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="ConfigDirectory" Type="System.String" Scope="User">
-      <Value Profile="(Default)">E:\Source\win-gists\GistClient\bin\Debug\config\</Value>
+      <Value Profile="(Default)">E:\Source\win-gists\Uploader\bin\Debug</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -25,7 +25,7 @@ namespace GistClientConfiguration.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("E:\\Source\\win-gists\\GistClient\\bin\\Debug\\config\\")]
+        [global::System.Configuration.DefaultSettingValueAttribute("E:\\Source\\win-gists\\Uploader\\bin\\Debug")]
         public string ConfigDirectory {
             get {
                 return ((string)(this["ConfigDirectory"]));

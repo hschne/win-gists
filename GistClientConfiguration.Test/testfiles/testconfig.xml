@@ -6,4 +6,5 @@
   <OpenAfterUpload>false</OpenAfterUpload>
   <CopyUrlToClipboard>true</CopyUrlToClipboard>
   <UploadAnonymously>true</UploadAnonymously>
+  <ShowBubbleNotifications>false</ShowBubbleNotifications>
 </Configuration>
