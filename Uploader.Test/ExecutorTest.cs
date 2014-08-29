@@ -1,7 +1,6 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace GistClient.Test
+namespace Uploader.Test
 {
     [TestClass]
     public class ExecutorTest

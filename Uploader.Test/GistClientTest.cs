@@ -1,25 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
-using GistClient.Request;
 using GistClientConfiguration.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RestSharp;
+using Uploader.Request;
 
-namespace GistClient.Test {
+namespace Uploader.Test
+{
     [TestClass]
-    public class GistClientTest {
+    public class GistClientTest
+    {
         [TestMethod]
-        public void SendAnonymously() {
-            String filepath = @"..\..\testfiles\TestFile.txt";
+        public void SendAnonymously(){
+            string filepath = @"..\..\testfiles\TestFile.txt";
             RestRequest request = RequestFactory.CreateRequest(filepath);
-            Dictionary<string, string> response = Request.Client.SendRequest(request);
+            Dictionary<string, string> response = Client.SendRequest(request);
             Assert.IsTrue(response != null);
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Exception))]
+        [ExpectedException(typeof (Exception))]
         public void SendRequestBadCredentials(){
-            String filepath = @"..\..\testfiles\TestFile.txt";
+            const string filepath = @"..\..\testfiles\TestFile.txt";
             RestRequest request = RequestFactory.CreateRequest(filepath);
             Client.SetAuthentication("My", "Credentials".Encrypt());
             Dictionary<string, string> response = Client.SendRequest(request);
@@ -27,9 +29,8 @@ namespace GistClient.Test {
         }
 
         [TestMethod]
-        public void SendRequest()
-        {
-            String filepath = @"..\..\testfiles\TestFile.txt";
+        public void SendRequest(){
+            const string filepath = @"..\..\testfiles\TestFile.txt";
             RestRequest request = RequestFactory.CreateRequest(filepath);
             Client.SetAuthentication("1234", "1234".Encrypt());
             Dictionary<string, string> response = Client.SendRequest(request);

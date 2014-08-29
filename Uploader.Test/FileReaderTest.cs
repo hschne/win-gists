@@ -1,9 +1,8 @@
 ﻿using System;
-using System.IO;
-using GistClient.Request;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Uploader.Request;
 
-namespace GistClient.Test
+namespace Uploader.Test
 {
     [TestClass]
     public class FileReaderTest
