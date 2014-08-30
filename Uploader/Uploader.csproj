@@ -65,6 +65,7 @@
     <Compile Include="Request\Client.cs" />
     <Compile Include="Request\FileReader.cs" />
     <Compile Include="Request\RequestFactory.cs" />
+    <Compile Include="UploaderIcon.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

@@ -11,7 +11,7 @@ namespace Uploader
         private TaskbarIcon taskbarIcon;
 
         protected override void OnStartup(StartupEventArgs e){
-            InitializeIcon();
+            var icon = new UploaderIcon();
             String[] args = e.Args;
             if (IsValidInput(args)){
                 String filepath = args[0];
@@ -22,24 +22,22 @@ namespace Uploader
                 var executor = new Executor(executionConfiguration);
                 executor.Execute();
             }
+            icon.Dispose();
+            Current.Shutdown();
         }
 
-        private void InitializeIcon(){
-            taskbarIcon = new TaskbarIcon{ Icon = Uploader.Properties.Resources.TaskbarIcon, ToolTipText = "Hello, lel!"};
-        }
 
         private static Boolean IsValidInput(String[] args){
-            if (args.Length != 1)
-            {
+            if (args.Length != 1){
                 Console.WriteLine(@"Error: Invalid number of arguments. Expected filepath.");
                 return false;
             }
-            if (!File.Exists(args[0]))
-            {
+            if (!File.Exists(args[0])){
                 Console.WriteLine("Error: File " + args + " does not exist.");
                 return false;
             }
             return true;
         }
+
     }
 }
