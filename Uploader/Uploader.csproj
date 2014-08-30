@@ -62,6 +62,7 @@
     </ApplicationDefinition>
     <Compile Include="ExecutionConfiguration.cs" />
     <Compile Include="Executor.cs" />
+    <Compile Include="Notifier.cs" />
     <Compile Include="Request\Client.cs" />
     <Compile Include="Request\FileReader.cs" />
     <Compile Include="Request\RequestFactory.cs" />

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Threading;
 using System.Windows;
 using Hardcodet.Wpf.TaskbarNotification;
 using WinGistsConfiguration.Configuration;
@@ -12,6 +13,7 @@ namespace Uploader
 
         protected override void OnStartup(StartupEventArgs e){
             var icon = new UploaderIcon();
+
             String[] args = e.Args;
             if (IsValidInput(args)){
                 String filepath = args[0];
@@ -22,7 +24,8 @@ namespace Uploader
                 var executor = new Executor(executionConfiguration);
                 executor.Execute();
             }
-            icon.Dispose();
+            icon.ShowStandardBaloon();
+            Thread.Sleep(3000);
             Current.Shutdown();
         }
 
