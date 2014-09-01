@@ -9,26 +9,38 @@ namespace Uploader
 {
     public partial class App : Application
     {
-        private TaskbarIcon taskbarIcon;
+        private static UploaderIcon icon;
+
+        private static Executor executor;
 
         protected override void OnStartup(StartupEventArgs e){
-            var icon = new UploaderIcon();
-
             String[] args = e.Args;
             if (IsValidInput(args)){
-                String filepath = args[0];
-                var executionConfiguration = new ExecutionConfiguration{
-                    Filepath = filepath,
-                    Configuration = ConfigurationManager.LoadConfigurationFromFile()
-                };
-                var executor = new Executor(executionConfiguration);
+                InitializeExecutor(args[0]);
+                ConfigurationManager.Configuration = ConfigurationManager.LoadConfigurationFromFile();
+                if (ConfigurationManager.ShowBubbleNotifications){
+                    InitializeNotifications();
+                }
                 executor.Execute();
             }
-            icon.ShowStandardBaloon();
-            Thread.Sleep(3000);
             Current.Shutdown();
         }
 
+        private static void InitializeExecutor(String filepath){
+            var executionConfiguration = new ExecutionConfiguration
+            {
+                Filepath = filepath,
+                Configuration = ConfigurationManager.LoadConfigurationFromFile()
+            };
+            executor = new Executor(executionConfiguration);
+        }
+
+        private static void InitializeNotifications(){
+            icon = new UploaderIcon();
+            executor.OnError += icon.ShowErrorBallon;
+            executor.OnNotify += icon.ShowStandardBaloon;
+            executor.OnFinish += icon.ShowStandardBaloon;
+        }
 
         private static Boolean IsValidInput(String[] args){
             if (args.Length != 1){

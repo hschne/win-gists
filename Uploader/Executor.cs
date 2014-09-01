@@ -17,21 +17,29 @@ namespace Uploader
 
         private ExecutionConfiguration ExecutionConfiguration { get; set; }
 
+        public delegate void ExecutionEventHandler(String message);
+
+        public event ExecutionEventHandler OnError;
+
+        public event ExecutionEventHandler OnNotify;
+
+        public event ExecutionEventHandler OnFinish;
+
         public void Execute(){
             ConfigurationManager.Configuration = ExecutionConfiguration.Configuration;
             if (ConfigurationManager.UploadAnonymously){
-                Console.WriteLine();
-                Console.WriteLine("Uploading file anonymously...");
                 CreateAndSendRequest();
+                NotifyEnd("File uploaded anonymously.");
                 return;
             }
             if (!ConfigurationManager.CredentialsExist()){
-                //add notification
+                WriteError("No credentials set.");
                 return;
             }
             Client.SetAuthentication(ConfigurationManager.Username,
                 ConfigurationManager.EncryptedPassword);
             CreateAndSendRequest();
+            NotifyEnd("File uploaded successfully.");
         }
 
 
@@ -41,19 +49,39 @@ namespace Uploader
                 Dictionary<string, string> response = Client.SendRequest(request);
                 String url = response["html_url"];
                 if (ConfigurationManager.CopyUrlToClipboard){
-                    // add notification
                     Clipboard.SetText(url);
+                    WriteNotification("Url has been copied to clipboard.");
                 }
                 if (ConfigurationManager.OpenAfterUpload){
-                    // add notification
                     Process.Start(url);
                 }
             }
             catch (IOException){
-                //notification
+                WriteError("Error reading from file.");
             }
             catch (Exception e){
-                //notification
+                WriteError(e.Message);
+            }
+        }
+
+        private void WriteNotification(String message){
+            ExecutionEventHandler handler = OnNotify;
+            if (handler != null){
+                handler(message);
+            }
+        }
+
+        private void WriteError(String message){
+            ExecutionEventHandler handler = OnError;
+            if (handler != null){
+                handler(message);
+            }
+        }
+
+        private void NotifyEnd(String message){
+            ExecutionEventHandler handler = OnFinish;
+            if (handler != null){
+                handler("Upload successfull.");
             }
         }
     }
