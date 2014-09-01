@@ -3,13 +3,12 @@ using System.IO;
 using System.Reflection;
 using System.Xml;
 using System.Xml.Serialization;
-using WinGistsConfiguration.Properties;
 
 namespace WinGistsConfiguration.Configuration
 {
     public static class ConfigurationManager
     {
-        public static String Folder = Settings.Default.ConfigDirectory;
+        public static String Folder = TryGetInstallDirectory();
 
         public static String FileName = "Configuration.xml";
 
@@ -125,6 +124,14 @@ namespace WinGistsConfiguration.Configuration
             if (type == typeof (Boolean)){
                 propertyInfo.SetValue(Configuration, false, null);
             }
+        }
+
+        private static String TryGetInstallDirectory(){
+            String directory = Environment.GetEnvironmentVariable("WinGistInstall");
+            if (directory == null){
+                throw new Exception("Path to install directory not set.");
+            }
+            return directory;
         }
 
         public static bool CredentialsExist(){

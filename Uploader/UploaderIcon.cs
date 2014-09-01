@@ -1,26 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using Hardcodet.Wpf.TaskbarNotification;
-using WinGistsConfiguration.Configuration;
+using Uploader.Properties;
 
 namespace Uploader
 {
     public class UploaderIcon : IDisposable
     {
-        private readonly Icon icon = Properties.Resources.TaskbarIcon;
+        private readonly Icon icon = Resources.TaskbarIcon;
+
+        public UploaderIcon(){
+            TaskbarIcon = new TaskbarIcon{Icon = icon,};
+            FadeTime = 3000;
+        }
 
         private TaskbarIcon TaskbarIcon { get; set; }
 
         public int FadeTime { get; set; }
 
-        public UploaderIcon(){
-            TaskbarIcon = new TaskbarIcon { Icon = icon, };
-            FadeTime = 3000;
+        public void Dispose(){
+            TaskbarIcon.Dispose();
         }
 
         public void ShowStandardBaloon(String message){
@@ -35,10 +35,6 @@ namespace Uploader
             TaskbarIcon.ShowBalloonTip(title, message, BalloonIcon.Error);
             Thread.Sleep(FadeTime);
             TaskbarIcon.HideBalloonTip();
-        }
-
-        public void Dispose(){
-            TaskbarIcon.Dispose();
         }
     }
 }

@@ -13,15 +13,21 @@ namespace Uploader
 
         private static Executor executor;
 
-        protected override void OnStartup(StartupEventArgs e){
-            String[] args = e.Args;
-            if (IsValidInput(args)){
-                InitializeExecutor(args[0]);
+        protected override void OnStartup(StartupEventArgs startupEvent){
+            String[] args = startupEvent.Args;
+            icon = new UploaderIcon();
+            try{
                 ConfigurationManager.Configuration = ConfigurationManager.LoadConfigurationFromFile();
-                if (ConfigurationManager.ShowBubbleNotifications){
-                    InitializeNotifications();
+                if (IsValidInput(args)){
+                    InitializeExecutor(args[0]);
+                    if (ConfigurationManager.ShowBubbleNotifications){
+                        EnableNotifications();
+                    }
+                    executor.Execute();
                 }
-                executor.Execute();
+            }
+            catch (Exception exception){
+                icon.ShowErrorBallon("An error occured: "+exception.InnerException.Message);
             }
             Current.Shutdown();
         }
@@ -35,8 +41,7 @@ namespace Uploader
             executor = new Executor(executionConfiguration);
         }
 
-        private static void InitializeNotifications(){
-            icon = new UploaderIcon();
+        private static void EnableNotifications(){
             executor.OnError += icon.ShowErrorBallon;
             executor.OnNotify += icon.ShowStandardBaloon;
             executor.OnFinish += icon.ShowStandardBaloon;
@@ -44,12 +49,10 @@ namespace Uploader
 
         private static Boolean IsValidInput(String[] args){
             if (args.Length != 1){
-                Console.WriteLine(@"Error: Invalid number of arguments. Expected filepath.");
-                return false;
+                throw new Exception("Invalid number of input arguments.");
             }
             if (!File.Exists(args[0])){
-                Console.WriteLine("Error: File " + args + " does not exist.");
-                return false;
+                throw new Exception("Error: File " + args + " does not exist.");
             }
             return true;
         }

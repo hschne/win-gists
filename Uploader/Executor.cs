@@ -57,10 +57,10 @@ namespace Uploader
                 }
             }
             catch (IOException){
-                WriteError("Error reading from file.");
+                throw new Exception("Error reading from file.");
             }
             catch (Exception e){
-                WriteError(e.Message);
+                throw new Exception("Upload failed. Possibly bad credentials.");
             }
         }
 
@@ -81,7 +81,7 @@ namespace Uploader
         private void NotifyEnd(String message){
             ExecutionEventHandler handler = OnFinish;
             if (handler != null){
-                handler("Upload successfull.");
+                handler(message);
             }
         }
     }
