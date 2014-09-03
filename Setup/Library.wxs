@@ -1,6 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-	<Fragment>
-		<!-- TODO: Put your code here. -->
-	</Fragment>
+  <Product Id="*" UpgradeCode="{19FCA64D-BB28-42EF-9513-FCCD51B6FECA}" Version="1.0.0.0" Language="1033" Name="WinGists" Manufacturer="hschroedl">
+    <Package InstallerVersion="300" Compressed="yes"/>
+    <Media Id="1" Cabinet="myapplication.cab" EmbedCab="yes" />
+
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="APPLICATIONROOTDIRECTORY" Name="WinGists"/>
+      </Directory>
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="ApplicationProgramsFolder" Name="WinGists"/>
+      </Directory>
+    </Directory>
+
+    <DirectoryRef Id="APPLICATIONROOTDIRECTORY">
+      <Component Id="Uploader.exe" Guid="{FFF52887-C8ED-44C1-AD77-D0C1B1D64F4A}">
+        <File Id="Uploader.exe" Source="$(var.Uploader.TargetPath)" KeyPath="yes"/>
+      </Component>
+      <Component Id="WinGistsConfiguration.exe" Guid="{DE3EAAA3-9742-4B29-B88D-A69CDF8CE3E7}">
+        <File Id="WinGistsConfiguration.exe" Source="$(var.WinGistsConfiguration.TargetPath)" KeyPath="yes"/>
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="ApplicationProgramsFolder">
+      <Component Id="ApplicationShortcut" Guid="{4A613123-6220-4344-9F95-3488AB129AE5}">
+        <Shortcut Id="ApplicationStartMenuShortcut" Name="WinGists"
+           Description="My Application Description"
+            Target="[#WinGistsConfiguration.exe]" WorkingDirectory="APPLICATIONROOTDIRECTORY"/>
+        <RemoveFolder Id="ApplicationProgramsFolder" On="uninstall"/>
+        <RegistryValue Root="HKCU" Key="Software\Microsoft\MyApplicationName" Name="installed" Type="integer" Value="1" KeyPath="yes"/>
+      </Component>
+    </DirectoryRef>
+
+    <Feature Id="MainApplication" Title="Main Application" Level="1">
+      <ComponentRef Id="Uploader.exe" />
+      <ComponentRef Id="WinGistsConfiguration.exe" />
+      <ComponentRef Id="ApplicationShortcut" />
+    </Feature>
+  </Product>
 </Wix>

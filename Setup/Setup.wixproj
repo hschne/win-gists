@@ -7,7 +7,7 @@
     <ProjectGuid>e82b2999-572a-4c22-9693-8993d28cd002</ProjectGuid>
     <SchemaVersion>2.0</SchemaVersion>
     <OutputName>Setup</OutputName>
-    <OutputType>Library</OutputType>
+    <OutputType>Package</OutputType>
     <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' AND '$(MSBuildExtensionsPath32)' != '' ">$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
     <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' ">$(MSBuildExtensionsPath)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
   </PropertyGroup>
@@ -22,6 +22,27 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Library.wxs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Uploader\Uploader.csproj">
+      <Name>Uploader</Name>
+      <Project>{ee5594f6-7748-4201-8011-08d45279a5f5}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\WinGistsConfiguration\WinGistsConfiguration.csproj">
+      <Name>WinGistsConfiguration</Name>
+      <Project>{1017e619-898b-46f2-a0f8-199711d03751}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TaskbarIcon.ico" />
   </ItemGroup>
   <Import Project="$(WixTargetsPath)" />
   <!--
