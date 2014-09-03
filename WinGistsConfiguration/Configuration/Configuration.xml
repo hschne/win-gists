@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Username />
+  <Password />
+  <SaveCredentials>false</SaveCredentials>
+  <OpenAfterUpload>false</OpenAfterUpload>
+  <CopyUrlToClipboard>false</CopyUrlToClipboard>
+  <UploadAnonymously>true</UploadAnonymously>
+  <ShowBubbleNotifications>false</ShowBubbleNotifications>
+</Configuration>

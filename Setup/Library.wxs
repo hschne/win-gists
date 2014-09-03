@@ -3,7 +3,12 @@
   <Product Id="*" UpgradeCode="{19FCA64D-BB28-42EF-9513-FCCD51B6FECA}" Version="1.0.0.0" Language="1033" Name="WinGists" Manufacturer="hschroedl">
     <Package InstallerVersion="300" Compressed="yes"/>
     <Media Id="1" Cabinet="myapplication.cab" EmbedCab="yes" />
-
+    <Icon Id="ProductIcon" SourceFile="TaskbarIcon.ico"/>
+    <Property Id="ARPPRODUCTICON" Value="ProductIcon"/>
+    <Property Id="ARPURLINFOABOUT" Value="http://www.github.com/hschroedl"/>
+    <Property Id="ARPNOREPAIR" Value="1"/>
+    <Property Id="ARPNOMODIFY" Value="1"/>
+    
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="ProgramFilesFolder">
         <Directory Id="APPLICATIONROOTDIRECTORY" Name="WinGists"/>
@@ -19,7 +24,13 @@
       </Component>
       <Component Id="WinGistsConfiguration.exe" Guid="{DE3EAAA3-9742-4B29-B88D-A69CDF8CE3E7}">
         <File Id="WinGistsConfiguration.exe" Source="$(var.WinGistsConfiguration.TargetPath)" KeyPath="yes"/>
+        <File Id="Configuration.xml" Source="$(var.WinGistsConfiguration.TargetDir)Configuration.xml"></File>
       </Component>
+      <Component Id="Dependencies" Guid="">
+        <File Id="MahApps.Metro.dll" Source="$(var.WinGistsConfiguration.TargetDir)MahApps.Metro.dll"></File>
+        <File Id="System.Windows.Interactivity.dll" Source="$(var.WinGistsConfiguration.TargetDir)System.Windows.Interactivity.dll"></File>
+      </Component>
+
     </DirectoryRef>
 
     <DirectoryRef Id="ApplicationProgramsFolder">
@@ -35,6 +46,7 @@
     <Feature Id="MainApplication" Title="Main Application" Level="1">
       <ComponentRef Id="Uploader.exe" />
       <ComponentRef Id="WinGistsConfiguration.exe" />
+      <ComponentRef Id="Dependencies"/>
       <ComponentRef Id="ApplicationShortcut" />
     </Feature>
   </Product>
