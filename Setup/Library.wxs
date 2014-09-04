@@ -49,7 +49,14 @@
       </Component>
     </DirectoryRef>
 
-    <!--Define -->
+    <!--Define context menu entry -->
+    <DirectoryRef Id="TARGETDIR">
+      <Component Id="ContextMenuShortcut" Guid="{11AC8A06-39C4-4AC1-A479-F89970337451}">
+        <RegistryKey Root="HKCR" Key="*\shell\WinGists\Command" Action="createAndRemoveOnUninstall">
+          <RegistryValue Action="write" Type="string" Value="[#Uploader.exe] '%1'"></RegistryValue>
+        </RegistryKey>
+      </Component>
+    </DirectoryRef>
 
     <!--Define component application-->
     <DirectoryRef Id="INSTALLDIR">
@@ -68,6 +75,7 @@
       <ComponentRef Id="Application" />
       <ComponentRef Id="StartMenuComponent" />
       <ComponentRef Id="DesktopComponent" />
+      <ComponentRef Id="ContextMenuShortcut" />
     </Feature>
   </Product>
 </Wix>
