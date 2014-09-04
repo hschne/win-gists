@@ -53,7 +53,7 @@
     <DirectoryRef Id="TARGETDIR">
       <Component Id="ContextMenuShortcut" Guid="{11AC8A06-39C4-4AC1-A479-F89970337451}">
         <RegistryKey Root="HKCR" Key="*\shell\WinGists\Command" Action="createAndRemoveOnUninstall">
-          <RegistryValue Action="write" Type="string" Value="[#Uploader.exe] '%1'"></RegistryValue>
+          <RegistryValue Action="write" Type="string" Value="[#Uploader.exe] &quot;%1&quot;"></RegistryValue>
         </RegistryKey>
       </Component>
     </DirectoryRef>
@@ -62,11 +62,12 @@
     <DirectoryRef Id="INSTALLDIR">
       <Component Id="Application" Guid="{08AE0D58-CB39-4BC7-A8F2-44597715054E}">
         <File Id="Uploader.exe" Source="$(var.Uploader.TargetPath)" KeyPath="yes" />
+        <File Id="HardCodet.Wpf.TaskbarNotification.dll" Source="$(var.Uploader.TargetDir)HardCodet.Wpf.TaskbarNotification.dll"></File>
+        <File Id="RestSharp.dll" Source="$(var.Uploader.TargetDir)RestSharp.dll"></File>
         <File Id="WinGistsConfiguration.exe" Source="$(var.WinGistsConfiguration.TargetPath)" />
         <File Id="Configuration.xml" Source="$(var.WinGistsConfiguration.TargetDir)Configuration.xml"></File>
         <File Id="MahApps.Metro.dll" Source="$(var.WinGistsConfiguration.TargetDir)MahApps.Metro.dll"></File>
-        <File Id="System.Windows.Interactivity.dll"
-              Source="$(var.WinGistsConfiguration.TargetDir)System.Windows.Interactivity.dll">
+        <File Id="System.Windows.Interactivity.dll" Source="$(var.WinGistsConfiguration.TargetDir)System.Windows.Interactivity.dll">
         </File>
       </Component>
     </DirectoryRef>

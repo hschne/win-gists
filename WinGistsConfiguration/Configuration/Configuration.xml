@@ -3,8 +3,8 @@
   <Username />
   <Password />
   <SaveCredentials>false</SaveCredentials>
-  <OpenAfterUpload>false</OpenAfterUpload>
+  <OpenAfterUpload>true</OpenAfterUpload>
   <CopyUrlToClipboard>false</CopyUrlToClipboard>
   <UploadAnonymously>true</UploadAnonymously>
-  <ShowBubbleNotifications>false</ShowBubbleNotifications>
+  <ShowBubbleNotifications>true</ShowBubbleNotifications>
 </Configuration>
