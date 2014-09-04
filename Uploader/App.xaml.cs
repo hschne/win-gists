@@ -27,7 +27,6 @@ namespace Uploader
                 }
             }
             catch (Exception exception){
-                Console.WriteLine("Error: " +exception.Message);
                 icon.ShowErrorBallon("An error occured: "+exception.InnerException.Message);
             }
             Current.Shutdown();

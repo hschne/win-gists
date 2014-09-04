@@ -5,7 +5,11 @@ A simple gist client for windows.
 
 #Planned
 
-Add logging feature
+Fix a bug where uploading its own config file fails. 
+
+Bring config to foreground if already open.
+
+Add logging feature for debuggin?
 
 Add icons to applications *prettyfy*
 

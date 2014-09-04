@@ -8,7 +8,7 @@
     <Icon Id="ProductIcon" SourceFile="TaskbarIcon.ico" />
     <Property Id="ARPPRODUCTICON" Value="ProductIcon" />
     <Property Id="ARPURLINFOABOUT" Value="http://www.github.com/hschroedl" />
-
+   
     <!--Define UI Stuffs-->
     <UIRef Id="WixUI_InstallDir" />
     <Property Id="WIXUI_INSTALLDIR" Value="INSTALLDIR" />
@@ -58,6 +58,13 @@
       </Component>
     </DirectoryRef>
 
+    <!--Define path variable-->
+    <DirectoryRef Id="TARGETDIR">
+      <Component Id="PathVariable" Guid="{1D6F7637-ED33-41E9-A0D2-73920056A0D6}">
+        <Environment Id="PATH" Name="WinGistInstall" Value="[INSTALLDIR]" Permanent="no" Part="last" Action="set" System="yes" />
+      </Component>
+    </DirectoryRef>
+
     <!--Define component application-->
     <DirectoryRef Id="INSTALLDIR">
       <Component Id="Application" Guid="{08AE0D58-CB39-4BC7-A8F2-44597715054E}">
@@ -77,6 +84,7 @@
       <ComponentRef Id="StartMenuComponent" />
       <ComponentRef Id="DesktopComponent" />
       <ComponentRef Id="ContextMenuShortcut" />
+      <ComponentRef Id="PathVariable" />
     </Feature>
   </Product>
 </Wix>
