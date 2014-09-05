@@ -2,7 +2,7 @@
                       x:Class="WinGistsConfiguration.MainWindow"
                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                      Title="MainWindow" Height="374" Width="412">
+                      Title="WinGists Configuration" Height="374" Width="412">
     <Grid Margin="0,0,0,1" HorizontalAlignment="Left" Width="402">
         <StackPanel Style="{DynamicResource FadeInStyle}" Visibility="{Binding CredentialsVisible}"
                     Name="CredentialsPanel" Margin="205,10,10,167">
