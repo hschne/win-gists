@@ -7,11 +7,7 @@ A simple gist client for windows.
 
 Fix a bug where uploading its own config file fails. 
 
-Bring config to foreground if already open.
-
-Add logging feature for debuggin?
-
-Add icons to applications *prettyfy*
+Add installation assets (icons, banners...)
 
 Add border to configuration window.
 

@@ -52,6 +52,9 @@
     <!--Define context menu entry -->
     <DirectoryRef Id="TARGETDIR">
       <Component Id="ContextMenuShortcut" Guid="{11AC8A06-39C4-4AC1-A479-F89970337451}">
+        <RegistryKey Root="HKCR" Key="*\shell\WinGists" Action="createAndRemoveOnUninstall">
+          <RegistryValue Action="write" Type="string" Value="Upload Gist"></RegistryValue>
+        </RegistryKey>
         <RegistryKey Root="HKCR" Key="*\shell\WinGists\Command" Action="createAndRemoveOnUninstall">
           <RegistryValue Action="write" Type="string" Value="[#Uploader.exe] &quot;%1&quot;"></RegistryValue>
         </RegistryKey>
