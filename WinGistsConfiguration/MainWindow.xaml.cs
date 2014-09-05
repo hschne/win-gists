@@ -1,5 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
 using System.Security;
 using System.Windows;
 using MahApps.Metro.Controls;
@@ -11,10 +13,23 @@ namespace WinGistsConfiguration
 {
     public partial class MainWindow : MetroWindow
     {
+        [DllImport("user32.dll")]
+        private static extern
+            bool SetForegroundWindow(IntPtr hWnd);
+        [DllImport("user32.dll")]
+        private static extern
+            bool ShowWindowAsync(IntPtr hWnd, int nCmdShow);
+        [DllImport("user32.dll")]
+        private static extern
+            bool IsIconic(IntPtr hWnd);
+
+        private const int SwRestore = 9;
+
         private readonly ConfigurationViewModel viewModel;
         private MessageDialogResult result;
 
         public MainWindow(){
+            BringExistingToFront();
             InitializeComponent();
             viewModel = new ConfigurationViewModel();
             Closing += CloseWindow;
@@ -33,6 +48,33 @@ namespace WinGistsConfiguration
                     e.Cancel = true;
                 }
             }
+        }
+
+        private void BringExistingToFront(){
+            string proc = Process.GetCurrentProcess().ProcessName;
+            Process[] processes = Process.GetProcessesByName(proc);
+            if (processes.Length > 1)
+            {
+                Process p = Process.GetCurrentProcess();
+                int n = 0;      
+                if (processes[0].Id == p.Id)
+                {
+                    n = 1;
+                }
+                IntPtr hWnd = processes[n].MainWindowHandle;
+                if (IsIconic(hWnd))
+                {
+                    ShowWindowAsync(hWnd, SwRestore);
+                }
+                SetForegroundWindow(hWnd);
+                Close();
+            }
+        }
+
+        private bool AlreadyOpened(){
+             string proc = Process.GetCurrentProcess().ProcessName;
+            Process[] processes = Process.GetProcessesByName(proc);
+            return processes.Length > 1;
         }
 
         private async void ShowMessageDialog(object sender, RoutedEventArgs e){

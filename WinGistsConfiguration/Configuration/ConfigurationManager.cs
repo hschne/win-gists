@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq.Expressions;
 using System.Reflection;
 using System.Xml;
 using System.Xml.Serialization;
@@ -99,8 +100,8 @@ namespace WinGistsConfiguration.Configuration
             }
             var serializer = new XmlSerializer(typeof (Configuration));
             using (TextWriter writer = new StreamWriter(Folder + FileName)){
-                serializer.Serialize(writer, Configuration);
-            }
+                    serializer.Serialize(writer, Configuration);
+                }
         }
 
         public static void ClearSettings(){
