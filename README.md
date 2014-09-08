@@ -5,6 +5,7 @@ WinGists is a simple windows application to upload any documents to github.com/g
 ## Features
 
 * Anonymous or authorized uploads.
+* Upload via context menu entry.
 * Option to open gists in browser after upload.
 * Option to copy gist url to clipboard.
 * Configuration via WPF Gui. 
@@ -13,7 +14,7 @@ WinGists is a simple windows application to upload any documents to github.com/g
 
 Like said before, the application was not actually created with other users in mind.
 If you can get some use out of it, and feel that it can be improved, I'm happy to accept any pull requests.
-In order to contribute Visual Studio 2012/2013 is required, as well as the Wix-Toolkit. 
+In order to contribute Visual Studio 2012/2013 is required, as well as the Wix-Toolkit (for the setup).
 
 Feel free to contact me with any questions you might have. 
 
