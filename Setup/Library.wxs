@@ -5,14 +5,14 @@
            Name="WinGists" Manufacturer="hschroedl">
     <Package InstallerVersion="300" Compressed="yes" />
     <Media Id="1" Cabinet="myapplication.cab" EmbedCab="yes" />
-    <Icon Id="ProductIcon" SourceFile="TaskbarIcon.ico" />
+    <Icon Id="ProductIcon" SourceFile="resources\TaskbarIcon.ico" />
     <Property Id="ARPPRODUCTICON" Value="ProductIcon" />
     <Property Id="ARPURLINFOABOUT" Value="http://www.github.com/hschroedl" />
-   
-    <!--Define UI Stuffs-->
+    <WixVariable Id="WixUIBannerBmp" Value="resources\WixUIBannerBmp_02.png" />
+    <WixVariable Id="WixUIDialogBmp" Value="resources\WixUIDialogBmp_02.png" />
     <UIRef Id="WixUI_InstallDir" />
     <Property Id="WIXUI_INSTALLDIR" Value="INSTALLDIR" />
-
+    
     <!--Define Directory Structure-->
 
     <Directory Id="TARGETDIR" Name="SourceDir">
@@ -82,12 +82,18 @@
       </Component>
     </DirectoryRef>
 
+    <PropertyRef Id="NETFRAMEWORK45"/>
+    <Condition Message="This application requires .NET Framework 4.5. Please install the .NET Framework then run this installer again.">
+      <![CDATA[Installed OR NETFRAMEWORK45]]>
+    </Condition>
+    
     <Feature Id="MainApplication" Title="WinGists" Level="1">
       <ComponentRef Id="Application" />
       <ComponentRef Id="StartMenuComponent" />
       <ComponentRef Id="DesktopComponent" />
       <ComponentRef Id="ContextMenuShortcut" />
       <ComponentRef Id="PathVariable" />
+     
     </Feature>
   </Product>
 </Wix>
